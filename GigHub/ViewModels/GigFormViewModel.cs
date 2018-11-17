@@ -8,11 +8,16 @@ namespace GigHub.ViewModels
 {
     public class GigFormViewModel
     {
+
         public string Venue { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
         public byte Genere { get; set; }
         public IEnumerable<Genere> Generes { get; set; }//List of Geners from DB
+        public DateTime DateTime
+        {
+            get { return DateTime.Parse(string.Format("{0} {1}",  Date,  Time)); }
+        }
 
     }
 }
