@@ -8,6 +8,9 @@ using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
 
+//Gig means party
+//venue means the place of party ie :concert
+// gener : means type of music
 namespace GigHub.Controllers
 {
     [Authorize]
@@ -34,15 +37,20 @@ namespace GigHub.Controllers
         [HttpPost]
         public ActionResult Create(GigFormViewModel viewModel)
         {
-            var artist = dbContext.Users.Single(u => u.Id == User.Identity.GetUserId());// application user object that can associated with gig
-          var gig = new Gig()
-          {
-              Artist = artist,
-              DateTime = DateTime.Parse(string.Format("{0} {1}" ,viewModel.Date,viewModel.Time)),
-
-          }
-
-            return View();
+            var currentlyLoggedUserId = User.Identity.GetUserId();//artist is logged in,wants to add party
+            var artist = dbContext.Users.Single(u => u.Id == currentlyLoggedUserId);// application user object that can associated with gig
+            var genere = dbContext.Generes.Single(g => g.Id == viewModel.Genere);
+            var gig = new Gig() 
+            {
+                Artist = artist,
+                DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
+                Genere = genere, // type of music selected by user 
+                Venue = viewModel.Venue //the place selecte by user
+            };
+            dbContext.Gigs.Add(gig);
+            dbContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
+            //return View();
         }
 
 
