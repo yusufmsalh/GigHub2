@@ -1,0 +1,29 @@
+﻿@model GigHub.ViewModels.GigFormViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form>
+    <div class="form-group">
+        @Html.LabelFor(e=>e.Venue)
+        @Html.TextBoxFor(e=>e.Venue,new { @class =  "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e=>e.Date)
+        @Html.TextBoxFor(e=>e.Date,new { @class =  "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e=>e.Time)
+        @Html.TextBoxFor(e=>e.Time,new { @class =  "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e=>e.Genere)
+        @Html.DropDownListFor(m=>m.Genere,new SelectList(Model.Generes,"Id","Name"),"Select Genere",new {@class = "form-control"} )
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
