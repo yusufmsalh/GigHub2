@@ -9,15 +9,20 @@
     <div class="form-group">
         @Html.LabelFor(e => e.Venue)
         @Html.TextBoxFor(e=>e.Venue,new { @class =  "form-control" })
+        @Html.ValidationMessageFor(e=>e.Venue)
     </div>
     <div class="form-group">
         @Html.LabelFor(e=>e.Date)
         @Html.TextBoxFor(e=>e.Date,new { @class =  "form-control" })
+        @Html.ValidationMessageFor(e=>e.Date)
+
 
     </div>
     <div class="form-group">
         @Html.LabelFor(e=>e.Time)
         @Html.TextBoxFor(e=>e.Time,new { @class =  "form-control" })
+        @Html.ValidationMessageFor(e=>e.Time)
+
     </div>
 
     <div class="form-group">
