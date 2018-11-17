@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201811161830191_AddingGigTable.Designer.cs">
       <DependentUpon>201811161830191_AddingGigTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811170644462_OverrideNamingConventionForGigsAndGenere.cs" />
+    <Compile Include="Migrations\201811170644462_OverrideNamingConventionForGigsAndGenere.Designer.cs">
+      <DependentUpon>201811170644462_OverrideNamingConventionForGigsAndGenere.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Genere.cs" />
     <Compile Include="Migrations\Gig.cs" />
@@ -295,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811161830191_AddingGigTable.resx">
       <DependentUpon>201811161830191_AddingGigTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811170644462_OverrideNamingConventionForGigsAndGenere.resx">
+      <DependentUpon>201811170644462_OverrideNamingConventionForGigsAndGenere.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
