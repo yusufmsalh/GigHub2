@@ -37,14 +37,11 @@ namespace GigHub.Controllers
         [HttpPost]
         public ActionResult Create(GigFormViewModel viewModel)
         {
-            var currentlyLoggedUserId = User.Identity.GetUserId();//artist is logged in,wants to add party
-            var artist = dbContext.Users.Single(u => u.Id == currentlyLoggedUserId);// application user object that can associated with gig
-            var genere = dbContext.Generes.Single(g => g.Id == viewModel.Genere);
             var gig = new Gig() 
             {
-                Artist = artist,
+                ArtistId = User.Identity.GetUserId(),//Get Currently logged User.
                 DateTime = DateTime.Parse(string.Format("{0} {1}", viewModel.Date, viewModel.Time)),
-                Genere = genere, // type of music selected by user 
+                GenereId = viewModel.Genere, // type of music selected by user 
                 Venue = viewModel.Venue //the place selecte by user
             };
             dbContext.Gigs.Add(gig);
