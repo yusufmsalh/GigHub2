@@ -11,7 +11,7 @@ namespace GigHub.ViewModels
     {
        public  override bool IsValid(object date)
        {
-            DateTime outputDateTime;
+            DateTime outputDate;
             bool isFutueDate = false;
             //is valid date format
             #region Parsing Date
@@ -19,13 +19,13 @@ namespace GigHub.ViewModels
               "d MM yyyy", //dateformat
               CultureInfo.CurrentCulture, //culture
               DateTimeStyles.None,//style
-              out outputDateTime);//out parameter 
+              out outputDate);//out parameter 
             #endregion
             //is future date
             #region Future Date
             if (isValid)
             {
-                isFutueDate = outputDateTime > DateTime.Now;
+                isFutueDate = outputDate > DateTime.Now;
             } 
             #endregion
             return isValid && isFutueDate;
@@ -33,4 +33,5 @@ namespace GigHub.ViewModels
        }
 
     }
+
 }
