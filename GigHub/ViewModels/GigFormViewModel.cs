@@ -15,7 +15,7 @@ namespace GigHub.ViewModels
         [Required] [FutureDateValidation]
         public string Date { get; set; }
 
-        [Required]
+        [Required][FutureTimeValidation ]
         public string Time { get; set; }
 
         [Required]

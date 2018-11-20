@@ -34,7 +34,7 @@ namespace GigHub.Controllers
             };
             return View(gigsViewModel);
         }
-        [HttpPost]
+        [HttpPost] [ValidateAntiForgeryToken]//Anti Cross Site Request Forgery
         public ActionResult Create(GigFormViewModel viewModel)
         {
             if (!ModelState.IsValid)

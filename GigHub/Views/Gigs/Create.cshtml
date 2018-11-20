@@ -6,6 +6,8 @@
 <h2>Create</h2>
 @using (Html.BeginForm("Create", "Gigs"))
 {
+    //Anti Cross Site Request Forgery
+    @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(e => e.Venue)
         @Html.TextBoxFor(e=>e.Venue,new { @class =  "form-control" })
