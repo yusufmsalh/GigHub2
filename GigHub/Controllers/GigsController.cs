@@ -46,7 +46,7 @@ namespace GigHub.Controllers
          var gig = new Gig() 
             {
                 ArtistId = User.Identity.GetUserId(),//Get Currently logged User.
-                DateTime = viewModel.GetDateTime(),
+                DateTime = viewModel.GetDateTime(),//combine two fields to one filed: {data,time}=>datetime 
                 GenereId = viewModel.Genere, // type of music selected by user 
                 Venue = viewModel.Venue //the place selecte by user
             };

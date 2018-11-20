@@ -12,7 +12,7 @@ namespace GigHub.ViewModels
         [Required]
         public string Venue { get; set; }
 
-        [Required]
+        [Required] [FutureDateValidation]
         public string Date { get; set; }
 
         [Required]
