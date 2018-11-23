@@ -12,7 +12,7 @@ namespace GigHub.ViewModels
         public override bool IsValid(object time)
         {
             DateTime outputTime;
-            bool isFutueTime = false;
+            bool isFutueTime = true;
             //is valid date format
             #region Parsing Date
             bool isValid = DateTime.TryParseExact(Convert.ToString(time),//passed date parameter
@@ -23,10 +23,10 @@ namespace GigHub.ViewModels
             #endregion
             //is future time
             #region Future Time
-            if (isValid)
-            {
-                isFutueTime = outputTime > DateTime.Now;
-            }
+            //if (isValid)
+            //{
+            //    isFutueTime = outputTime > DateTime.Now;
+            //}
             #endregion
             return isValid && isFutueTime;
 

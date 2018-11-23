@@ -37,7 +37,7 @@ namespace GigHub.Controllers
         [HttpPost] [ValidateAntiForgeryToken]//Anti Cross Site Request Forgeryf
         public ActionResult Create(GigFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid)//invalid model
             {
                 viewModel.Generes = dbContext.Generes.ToList();//bug fix : while post back ,viewModel is a new object ,Geners not intialized
                 return View("Create", viewModel);

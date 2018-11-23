@@ -16,7 +16,7 @@ namespace GigHub.ViewModels
             //is valid date format
             #region Parsing Date
             bool isValid = DateTime.TryParseExact(Convert.ToString(date),//passed date parameter
-              "d MM yyyy", //dateformat
+              "dd/mm/yyyy", //dateformat
               CultureInfo.CurrentCulture, //culture
               DateTimeStyles.None,//style
               out outputDate);//out parameter 
@@ -25,7 +25,7 @@ namespace GigHub.ViewModels
             #region Future Date
             if (isValid)
             {
-                isFutueDate = outputDate > DateTime.Now;
+                isFutueDate = outputDate < DateTime.Now;
             } 
             #endregion
             return isValid && isFutueDate;

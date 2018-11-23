@@ -20,7 +20,6 @@ namespace GigHub.ViewModels
 
         [Required]
         public byte Genere { get; set; }
-
         public IEnumerable<Genere> Generes { get; set; }//List of Geners from DB
 
         public DateTime GetDateTime()//Method not prop to avoid Exception caused by reflection in posting back in invalid model state
