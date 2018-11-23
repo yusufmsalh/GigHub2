@@ -22,7 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
-
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+/*Bootstrap Overrides*/
 .navbar-inverse {
     background-color: #c30ba9;
     border-color: #c30ba9;
@@ -75,7 +79,7 @@ body {
 }
 .btn {
     padding: 12px 56px;
-    margin-left: 54px;
+    margin-left: 10px;
     margin-top: 15px;
 }
 .btn-primary {
@@ -89,4 +93,9 @@ body {
 }
  .navbar-brand {
     font-weight: 700;    /*bold Application Name*/
+}
+.alert-info {
+    color: #8f7a31;
+    background-color: #e2d9f7;
+    border-color: #c30ba9;
 }
