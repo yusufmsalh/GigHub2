@@ -15,9 +15,11 @@ namespace GigHub.ViewModels
             bool isFutueDate = false;
             //is valid date format
             #region Parsing Date
+           System.Globalization.CultureInfo cultureInfo =
+               new System.Globalization.CultureInfo("En-US");
             bool isValid = DateTime.TryParseExact(Convert.ToString(date),//passed date parameter
               "dd/mm/yyyy", //dateformat
-              CultureInfo.CurrentCulture, //culture
+                cultureInfo,           //CultureInfo.CurrentCulture Next Phase : Arabic
               DateTimeStyles.None,//style
               out outputDate);//out parameter 
             #endregion

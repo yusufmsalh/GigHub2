@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201811171236540_AddingForeignKeysToGigs.Designer.cs">
       <DependentUpon>201811171236540_AddingForeignKeysToGigs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811241540208_AddNametoApplicationUser.cs" />
+    <Compile Include="Migrations\201811241540208_AddNametoApplicationUser.Designer.cs">
+      <DependentUpon>201811241540208_AddNametoApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Genere.cs" />
     <Compile Include="Models\Gig.cs" />
@@ -355,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811171236540_AddingForeignKeysToGigs.resx">
       <DependentUpon>201811171236540_AddingForeignKeysToGigs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241540208_AddNametoApplicationUser.resx">
+      <DependentUpon>201811241540208_AddNametoApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -42,10 +42,11 @@ namespace GigHub.Controllers
                 viewModel.Generes = dbContext.Generes.ToList();//bug fix : while post back ,viewModel is a new object ,Geners not intialized
                 return View("Create", viewModel);
             }
-
-         var gig = new Gig() 
+ 
+            var gig = new Gig() 
             {
                 ArtistId = User.Identity.GetUserId(),//Get Currently logged User.
+
                 DateTime = viewModel.GetDateTime(),//combine two fields to one filed: {data,time}=>datetime 
                 GenereId = viewModel.Genere, // type of music selected by user 
                 Venue = viewModel.Venue //the place selecte by user
