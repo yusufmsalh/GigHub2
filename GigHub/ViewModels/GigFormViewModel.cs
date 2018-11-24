@@ -18,9 +18,9 @@ namespace GigHub.ViewModels
         [Required][FutureTimeValidation ]
         public string Time { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please Choose Genere")]
         public byte Genere { get; set; }
-        public IEnumerable<Genere> Generes { get; set; }//List of Geners from DB
+        public List<Genere> Generes { get; set; }//List of Geners from DB
 
         public DateTime GetDateTime()//Method not prop to avoid Exception caused by reflection in posting back in invalid model state
         {

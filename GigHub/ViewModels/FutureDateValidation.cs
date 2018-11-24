@@ -25,7 +25,7 @@ namespace GigHub.ViewModels
             #region Future Date
             if (isValid)
             {
-                isFutueDate = outputDate < DateTime.Now;
+                isFutueDate = outputDate > (DateTime.Now.AddDays(-1));
             } 
             #endregion
             return isValid && isFutueDate;
