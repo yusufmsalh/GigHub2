@@ -7,19 +7,19 @@ using System.Web;
 
 namespace GigHub.ViewModels
 {
-    public class FutureDateValidation :ValidationAttribute
+    public class FutureDateValidation : ValidationAttribute
     {
-       public  override bool IsValid(object date)
-       {
+        public override bool IsValid(object date)
+        {
             DateTime outputDate;
             bool isFutueDate = false;
             //is valid date format
             #region Parsing Date
-           System.Globalization.CultureInfo cultureInfo =
-               new System.Globalization.CultureInfo("En-US");
+            System.Globalization.CultureInfo enUS =
+                new System.Globalization.CultureInfo("en-US");
             bool isValid = DateTime.TryParseExact(Convert.ToString(date),//passed date parameter
-              "dd/mm/yyyy", //dateformat
-                cultureInfo,           //CultureInfo.CurrentCulture Next Phase : Arabic
+              "d/mm/yyyy", //dateformat
+                enUS,  //CultureInfo.CurrentCulture Next Phase : Arabic
               DateTimeStyles.None,//style
               out outputDate);//out parameter 
             #endregion
@@ -28,11 +28,11 @@ namespace GigHub.ViewModels
             if (isValid)
             {
                 isFutueDate = outputDate > (DateTime.Now.AddDays(-1));
-            } 
+            }
             #endregion
             return isValid && isFutueDate;
 
-       }
+        }
 
     }
 

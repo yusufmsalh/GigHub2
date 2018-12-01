@@ -240,6 +240,7 @@
     <Compile Include="ViewModels\FutureDateValidation.cs" />
     <Compile Include="ViewModels\FutureTimeValidation.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

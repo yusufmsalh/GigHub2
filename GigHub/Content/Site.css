@@ -22,6 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
 span.field-validation-error {
     color: red;
     font-weight: bold;
@@ -77,25 +78,47 @@ body {
     padding: 17px 12px;
     border-radius: 18px; /*curvy borders*/
 }
+
 .btn {
     padding: 12px 56px;
     margin-left: 10px;
     margin-top: 15px;
 }
+
 .btn-primary {
     background-color: #b94875;
 }
+
 .form-control:focus {
-    border-color: #73065c;  
+    border-color: #73065c;
     outline: 0;
-     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
-     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); 
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
- .navbar-brand {
-    font-weight: 700;    /*bold Application Name*/
+
+.navbar-brand {
+    font-weight: 700; /*bold Application Name*/
 }
+
 .alert-info {
     color: #8f7a31;
     background-color: #e2d9f7;
     border-color: #c30ba9;
 }
+/*Page -Level- style*/
+
+/*
+    .gigs {
+list-style: none;  removing bullets
+}
+.gigs > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+
+    .gigs > li.details {
+        position: absolute;
+        top: 0;
+        left: 70px;
+    }*/
