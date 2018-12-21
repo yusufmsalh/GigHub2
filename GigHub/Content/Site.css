@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 20px;
 }
 
@@ -27,24 +27,42 @@ span.field-validation-error {
     color: red;
     font-weight: bold;
 }
-/*Bootstrap Overrides*/
+
+/* Bootstrap Overrides */
 .navbar-inverse {
-    background-color: #c30ba9;
-    border-color: #c30ba9;
+    background-color: #ff4342;
+    border-color: #ff4342;
 }
 
-    .navbar-inverse .navbar-nav > li > a {
-        color: #1d1b1b;
-    }
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
 
-    .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
-        color: #101010;
-        background-color: #0c0c0c00;
-    }
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
 
-    .navbar-inverse .navbar-brand {
-        color: #080808;
-    }
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: rgba(205, 40, 39, 0.55);
+}
+
+.dropdown-menu {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.navbar-brand {
+    font-weight: 700;    
+}
+
+body {
+    font-size: 17px;
+}
 
 body,
 h1,
@@ -59,66 +77,73 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: "Noto Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    line-height: 1.1;
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
-body {
+.form-control {
     font-size: 17px;
+    padding: 20px 15px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
 }
 
-.form-control {
-    font-family: 'Indie Flower';
-    font-size: 17px;
-    padding: 17px 12px;
-    border-radius: 18px; /*curvy borders*/
-}
 
 .btn {
-    padding: 12px 56px;
-    margin-left: 10px;
-    margin-top: 15px;
+    font-size: 17px;
+    padding: 7px 20px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
 }
 
-.btn-primary {
-    background-color: #b94875;
+/* Page-level styles */
+.gigs {
+    list-style: none;
 }
 
-.form-control:focus {
-    border-color: #73065c;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-}
-
-.navbar-brand {
-    font-weight: 700; /*bold Application Name*/
-}
-
-.alert-info {
-    color: #8f7a31;
-    background-color: #e2d9f7;
-    border-color: #c30ba9;
-}
-/*Page -Level- style*/
-
-/*
-    .gigs {
-list-style: none;  removing bullets
-}
 .gigs > li {
     position: relative;
     margin-bottom: 30px;
 }
 
+.gigs > li .date {
+    background: red;
+    color: white;
+    text-align: center;
+    width: 60px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
 
-    .gigs > li.details {
-        position: absolute;
-        top: 0;
-        left: 70px;
-    }*/
+.gigs > li .date .month {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 6px;
+}
+
+    .gigs > li .date .day {
+        background: #f7f7f7;
+        color: #333;
+        font-size: 20px;
+        padding: 6px 12px;
+    }
+
+.gigs > li .details {
+    position: absolute;
+    top: 0;
+    left: 70px;    
+}
+
+    .gigs > li .details .artist {
+        font-weight: bold;
+        display: block;
+    }
+
+    .gigs > li .details .genre {
+        font-size: 15px;
+    }
+
