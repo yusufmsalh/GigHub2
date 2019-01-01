@@ -23,11 +23,30 @@
                 <span class="genere">
                     @gig.Genere.Name
                 </span>
+                <button  gigId ="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right">Going ?</button>
             </div>
 
         </li>
     }
 </ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#btnGoing").click(function(e) {
+                $.post("/api/Attendece", $(e.target).attr("gigId"))
+                    .done(function () { })
+                .fail(function(parameters) {
+                        
+                    })
+
+            });
+
+        });
+    </script>
+
+}
 @* Getting Apr *@
 @* Getting The Day => d + space  *@
 @*use this link to enable zen coding https://bit.ly/2BIbJNF*@

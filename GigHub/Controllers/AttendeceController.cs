@@ -21,12 +21,24 @@ namespace GigHub.Controllers
         [HttpPost]
         public IHttpActionResult Attend([FromBodyAttribute] int gigId)
         {
+            #region Avoid Duplicate Attendence
+
+            //var attenderId = User.Identity.GetUserId();
+            var attenderId = "50cbfce6-8cf3-4e17-a885-81375da81a43"; //for testing
+            var isDuplicate = dbContext.Attendences.Any(a => a.AttenderId == attenderId && a.GigId == gigId);
+            if (isDuplicate)
+            {
+                return BadRequest("You have already Attended This Gig");
+            }
+
+            #endregion
             var attendence = new Attendence()
             {
                 GigId = gigId,
-                AttenderId = "50cbfce6-8cf3-4e17-a885-81375da81a43"
-                    //User.Identity.GetUserId()
-            };
+                AttenderId = User.Identity.GetUserId()
+            //"50cbfce6-8cf3-4e17-a885-81375da81a43"
+
+        };
             dbContext.Attendences.Add(attendence);
             dbContext.SaveChanges();
             return Ok();
