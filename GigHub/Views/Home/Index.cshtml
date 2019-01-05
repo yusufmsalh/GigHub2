@@ -35,13 +35,13 @@
     <script>
         $(document).ready(function() {
             $("#btnGoing").click(function(e) {
-                $.post("/api/Attendece", { "": $(e.target).attr("gigId") })
+                $.post("/api/Attendece", { GigId: $(e.target).attr("gigId") })
                 
                 .done(function() {
                     $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
                 })
                 .fail(function(parameters) {
-                    $('#btnGoing').text('Faield To Update').addClass('btn-danger');
+                    $('#btnGoing').text('Failed To Update').addClass('btn-danger');
                 })
 
         });
