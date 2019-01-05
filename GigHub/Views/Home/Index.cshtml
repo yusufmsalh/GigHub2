@@ -23,26 +23,28 @@
                 <span class="genere">
                     @gig.Genere.Name
                 </span>
-                <button  gigId ="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right">Going ?</button>
+                <button  gigId ="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right" style="margin-left: 16px;">Going ?</button>
             </div>
 
         </li>
     }
-</ul>
+</ul> 
 
 @section scripts
 {
     <script>
         $(document).ready(function() {
             $("#btnGoing").click(function(e) {
-                $.post("/api/Attendece", $(e.target).attr("gigId"))
-                    .done(function () { })
+                $.post("/api/Attendece", { "": $(e.target).attr("gigId") })
+                
+                .done(function() {
+                    $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
+                })
                 .fail(function(parameters) {
-                        
-                    })
+                    $('#btnGoing').text('Faield To Update').addClass('btn-danger');
+                })
 
-            });
-
+        });
         });
     </script>
 

@@ -36,9 +36,10 @@ namespace GigHub.Controllers
             {
                 GigId = gigId,
                 AttenderId = User.Identity.GetUserId()
-            //"50cbfce6-8cf3-4e17-a885-81375da81a43"
+                //AttenderId = "52f143fb-381c-484c-af5e-ffcb562a51b7"
+                //"50cbfce6-8cf3-4e17-a885-81375da81a43"
 
-        };
+            };
             dbContext.Attendences.Add(attendence);
             dbContext.SaveChanges();
             return Ok();

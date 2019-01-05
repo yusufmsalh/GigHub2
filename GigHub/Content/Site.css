@@ -16,6 +16,7 @@
     white-space: normal;
 }
 
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -93,10 +94,10 @@ h6,
 
 
 .btn {
-    font-size: 17px;
-    padding: 7px 20px;
-    -ms-border-radius: 9px;
-    border-radius: 9px;
+    /*font-size: 17px;
+    padding: 7px 20px;*/
+    /*-ms-border-radius: 9px;
+    border-radius: 9px;*/
 }
 
 /* Page-level styles */
@@ -146,4 +147,9 @@ h6,
     .gigs > li .details .genre {
         font-size: 15px;
     }
+
+#btnGoing {
+    margin-left: 14px !important;
+}
+
 
