@@ -212,6 +212,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendeceController.cs" />
+    <Compile Include="Controllers\FollowingController.cs" />
+    <Compile Include="DTO\FollowingDTO.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -247,13 +249,22 @@
     <Compile Include="Migrations\201812210736375_AddingAttendence.Designer.cs">
       <DependentUpon>201812210736375_AddingAttendence.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901071442115_AddingFollowing.cs" />
+    <Compile Include="Migrations\201901071442115_AddingFollowing.Designer.cs">
+      <DependentUpon>201901071442115_AddingFollowing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901091656244_AddingFollowFeature.cs" />
+    <Compile Include="Migrations\201901091656244_AddingFollowFeature.Designer.cs">
+      <DependentUpon>201901091656244_AddingFollowFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendence.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Genere.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -386,6 +397,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812210736375_AddingAttendence.resx">
       <DependentUpon>201812210736375_AddingAttendence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901071442115_AddingFollowing.resx">
+      <DependentUpon>201901071442115_AddingFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901091656244_AddingFollowFeature.resx">
+      <DependentUpon>201901091656244_AddingFollowFeature.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace GigHub.Models
         public DbSet<Gig> Gigs { get; set; }
         public DbSet<Genere> Generes { get; set; }
         public DbSet<Attendence> Attendences { get; set; }//Event of user attending a Party
-
+        public DbSet<FollowingRelation> Following { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -34,6 +34,17 @@ namespace GigHub.Models
             dbModelBuilder.Entity<Attendence>().
                 HasRequired(a => a.Gig).WithMany()
                 .WillCascadeOnDelete(false);
+
+            dbModelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Followers)
+                .WithRequired(f => f.Followee)
+                .WillCascadeOnDelete(false);
+
+            dbModelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Followees)
+                .WithRequired(f => f.Follower)
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(dbModelBuilder);
         }
 

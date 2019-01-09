@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using GigHub.Migrations;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace GigHub.Models
 {
@@ -19,6 +21,15 @@ namespace GigHub.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public ICollection<FollowingRelation> Followers { get; set; }
+        public ICollection<FollowingRelation> Followees { get; set; }
+
+        public ApplicationUser()
+        {
+            Followers = new Collection<FollowingRelation>(); // use must intialize list inside constructor
+            Followees = new Collection<FollowingRelation>();
         }
     }
 
