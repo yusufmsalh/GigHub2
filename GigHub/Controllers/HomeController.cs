@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
- 
+using GigHub.ViewModels;
+
 namespace GigHub.Controllers
 {
     public class HomeController : Controller
@@ -18,11 +19,20 @@ namespace GigHub.Controllers
         }
         public ActionResult Index()
         {
+
             var upComingGigs = dbContext.Gigs
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)
                 .Where(g => g.DateTime >= DateTime.Now);//get only future gigs
-            return View(upComingGigs);
+            var isAuthenticated = User.Identity.IsAuthenticated;
+            var homeViewModel = new HomeViewModel()
+            {
+                UpComingGigs = upComingGigs,
+                IsAuthenticated = isAuthenticated
+
+
+            };
+            return View(homeViewModel);
         }
 
         public ActionResult About()
