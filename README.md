@@ -8,12 +8,12 @@ it simply models the relation between a gig (party) and and artist , the logged 
 
 core use cases
 --------------
-*add a gig
-*view all up coming gigs
-*add a gig to calender
-*follow an artist
-*view gigs  I am attending
-*who I am following
+* add a gig
+* view all up coming gigs
+* add a gig to calender
+* follow an artist
+* view gigs  I am attending
+* who I am following
 =============================================================================================
 in this course  I have learned :
 * 1-How To Extract Use Case Out of Requirements Document.
