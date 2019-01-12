@@ -39,8 +39,7 @@ SQL Injection : solved by parameterized Query ,EF
 * 17-Relative and Absolute Position, Zen Coding ,Css Attr.
 * 18-Calling a WebApi Ajax -post with parameters and Using Dto to recieve Param.
 * 19-Implement one to many, many to many relations using code first approach.
-
-
+* 20- How to write a readme file on github :D .
 
 
 
