@@ -56,7 +56,18 @@ namespace GigHub.Controllers
             return RedirectToAction("Index", "Home");
             //return View();
         }
+        [HttpGet]
+      
+        public ActionResult ViewMyGigs()
+        {
+            var userID = User.Identity.GetUserId();
+            var myGigs = dbContext.Attendences.Where(e => e.AttenderId == userID)
+                .Select(a=>a.Gig)
+                .ToList();
 
+            return View(myGigs);
+
+        }
 
     }
 }

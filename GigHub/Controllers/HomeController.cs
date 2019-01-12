@@ -24,7 +24,7 @@ namespace GigHub.Controllers
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)
                 .Where(g => g.DateTime >= DateTime.Now);//get only future gigs
-            var isAuthenticated = User.Identity.IsAuthenticated;
+            var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
             var homeViewModel = new HomeViewModel()
             {
                 UpComingGigs = upComingGigs,
