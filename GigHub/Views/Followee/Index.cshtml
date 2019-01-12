@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "WhoIAmFollowing";
+}
+
+<h2>WhoIAmFollowing</h2>
+<ul>
+@foreach (var learderName in Model)
+{
+    <li>
+         @learderName
+    </li>
+    }
+    </ul>

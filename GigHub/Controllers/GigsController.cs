@@ -68,6 +68,6 @@ namespace GigHub.Controllers
             return View(myGigs);
 
         }
-
+        
     }
 }
