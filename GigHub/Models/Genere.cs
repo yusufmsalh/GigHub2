@@ -1,4 +1,4 @@
-﻿namespace GigHub.Migrations
+﻿namespace GigHub.Models
 {
     public class Genere
     {

@@ -1,4 +1,5 @@
 ﻿using GigHub.Migrations;
+using GigHub.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,7 +25,8 @@ namespace GigHub.ViewModels
 
         public DateTime GetDateTime()//Method not prop to avoid Exception caused by reflection in posting back in invalid model state
         {
-           return DateTime.Parse(string.Format("{0} {1}", Date, Time)); 
+            return DateTime.Now;
+           return DateTime.Parse(string.Format("{0} {1}", Date, Time)); // fix it later
         }
 
     }

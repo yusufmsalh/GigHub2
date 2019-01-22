@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,6 +29,7 @@ namespace GigHub.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+
            GigFormViewModel gigsViewModel = new GigFormViewModel()
             {
                 Generes = dbContext.Generes.ToList()
@@ -49,11 +51,11 @@ namespace GigHub.Controllers
 
                 DateTime = viewModel.GetDateTime(),//combine two fields to one filed: {data,time}=>datetime 
                 GenereId = viewModel.Genere, // type of music selected by user 
-                Venue = viewModel.Venue //the place selecte by user
+                Venue = viewModel.Venue //the place selected by user
             };
             dbContext.Gigs.Add(gig);
             dbContext.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ViewMyUpCommingGigs", "Home");
             //return View();
         }
         [HttpGet]
@@ -68,6 +70,18 @@ namespace GigHub.Controllers
             return View(myGigs);
 
         }
+        public ActionResult ViewMyUpCommingGigs()
+        {
+            var userID = User.Identity.GetUserId();
+            var myUpcommmingGigs = dbContext.Gigs.
+                Where(e => e.ArtistId == userID && e.DateTime > DateTime.Now)
+                .Include(yusuf=>yusuf.Genere)
+                .ToList();
+
+            return View(myUpcommmingGigs);
+
+        }
+
         
     }
 }

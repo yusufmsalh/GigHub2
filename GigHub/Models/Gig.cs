@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GigHub.Models;
+
 using System.ComponentModel.DataAnnotations;
 
-namespace GigHub.Migrations
+namespace GigHub.Models
 {
     public class Gig
     {
