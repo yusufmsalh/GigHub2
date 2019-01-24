@@ -1,11 +1,12 @@
 ﻿@model GigHub.ViewModels.GigFormViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = @Model.Heading;
 }
 
-<h2>Create</h2>
-@using (Html.BeginForm("Create", "Gigs"))
+<h2>@Model.Heading</h2>
+@using (Html.BeginForm(Model.ActionToBeCalled, "Gigs"))
 {
+    @Html.HiddenFor(e =>e.Id)
 
     <p class="alert alert-info">All Fileds are <strong >Required</strong> </p>
     //Anti Cross Site Request Forgery
