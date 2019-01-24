@@ -35,13 +35,17 @@ SQL Injection : solved by parameterized Query ,EF
 ,Cross Site Request Firgery(CSRF) : on behalf of user action ,solved by @Html.AntiForgeryToken(
 * 14-Selecting Suitable coloring to match Application Nature.
 * 15-Usability best practices .
-* 16-Expanding Application User Class.
+* 16-Extending Application User Class.
 * 17-Relative and Absolute Position, Zen Coding ,Css Attr.
 * 18-Calling a WebApi Ajax -post with parameters and Using Dto to recieve Param.
 * 19-Implement one to many, many to many relations using code first approach.
 * 20- How to write a readme file on github :D .
 
-
+---------------
+Part 2 :
+* 21- Implementing Create and Save DB Mehtod.
+* 22- Implementing Update Mehtod using the same view used in Add operation.
+* 23-Using Expression <Func> to get method name in run time and route too which action : add or edit.
 
  
 
