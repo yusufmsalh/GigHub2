@@ -24,14 +24,82 @@
                     @gig.Venue
                 </span>
                 <span class="genre">
-                   
+
                     @gig.Genere.Name
                 </span>
-                <div class="actions" >
+                <div class="actions">
                     <a href="@Url.Action("Edit","Gigs",new {id=gig.Id})">Edit</a>
+                    <a href="#" id="btnCancel" gigId="@gig.Id" gigname="@gig.Venue">Cancel</a>
                 </div>
             </div>
         </li>
     }
 </ul>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#btnCancel').click(function (clickEvent) {
+                var srcOfClickEvent = $(clickEvent.target);
+
+                //if (confirm("Sure to delete")) {
+
+                //}
+                //bootbox.confirm("Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
+                //    function (result) {
+                //        if (result) {
+                //            $.ajax({
+                //                url: "/api/GigsApi/" + srcOfClickEvent.attr("gigId"),
+                //                method: "Delete" // as our api method is decorated with http delete
+
+                //            }).done(function () {
+                //                //remove link from dom
+                //                srcOfClickEvent.parents("li").fadeOut(function () {
+                //                    $(this).remove();
+                //                })
+                //            }).fail(function () {
+                //                alert("Something went wrong.");
+                //            });
+                //        } else {
+                //            alert("Cancelled got Cancelled.");
+                //        }
+                //    });
+                bootbox.confirm({
+                    message: "Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/GigsApi/" + srcOfClickEvent.attr("gigId"),
+                                method: "Delete" // as our api method is decorated with http delete
+
+                            }).done(function () {
+                                //remove link from dom
+                                srcOfClickEvent.parents("li").fadeOut(function () {
+                                    $(this).remove();
+                                })
+                            }).fail(function () {
+                                alert("Something went wrong.");
+                            });
+                        } else {
+                            alert("Cancelled got Cancelled.");
+                        }
+                    }
+                });
+
+            });
+        });
+
+
+    </script>
+}
 

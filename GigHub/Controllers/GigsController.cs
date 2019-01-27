@@ -31,7 +31,7 @@ namespace GigHub.Controllers
         public ActionResult ViewMyGigs()
         {
             var userID = User.Identity.GetUserId();
-            var myGigs = dbContext.Attendences.Where(e => e.AttenderId == userID)
+            var myGigs = dbContext.Attendences.Where(e => e.AttenderId == userID )
                 .Select(a => a.Gig)
                 .ToList();
 
@@ -42,7 +42,7 @@ namespace GigHub.Controllers
         {
             var userID = User.Identity.GetUserId();
             var myUpcommmingGigs = dbContext.Gigs.
-                Where(e => e.ArtistId == userID && e.DateTime > DateTime.MinValue)
+                Where(e => e.ArtistId == userID && e.DateTime > DateTime.MinValue && e.IsCancelled ==true)//fix date later
                 .Include(yusuf => yusuf.Genere)
                 .ToList();
             return View(myUpcommmingGigs);
