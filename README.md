@@ -46,6 +46,8 @@ Part 2 :
 * 21- Implementing Create and Save DB Mehtod.
 * 22- Implementing Update Mehtod using the same view used in Add operation.
 * 23-Using Expression <Func> to get method name in run time and route too which action : add or edit.
+* 24- Implementing Logical Delete : ajax -api .
+ *25 - using bootbox : a js library to make bootstrap modals.
 
  
 
