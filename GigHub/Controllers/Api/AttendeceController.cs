@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
+using GigHub.DTO;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
-using GigHub.DTO;
-using GigHub.Migrations;
 
-namespace GigHub.Controllers
+namespace GigHub.Controllers.Api
 {
    //[Authorize] add after testing
     public class AttendeceController : ApiController

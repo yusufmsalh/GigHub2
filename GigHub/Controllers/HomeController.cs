@@ -23,7 +23,7 @@ namespace GigHub.Controllers
             var upComingGigs = dbContext.Gigs
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)
-                .Where(g => g.DateTime >= DateTime.Now && e.IsCancelled == true);//get only future gigs
+                .Where(g => g.DateTime >= DateTime.Now && g.IsCancelled == true);//get only future gigs
             var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
             var homeViewModel = new HomeViewModel()
             {
