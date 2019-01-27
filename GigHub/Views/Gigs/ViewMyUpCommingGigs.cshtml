@@ -22,6 +22,10 @@
             <div class="details">
                 <span class="artist">
                     @gig.Venue
+                    @if (gig.IsCancelled)
+                    {
+                        <span class="label label-warning"> Cancelled</span>
+                    }
                 </span>
                 <span class="genre">
 
@@ -41,29 +45,6 @@
         $(document).ready(function () {
             $('#btnCancel').click(function (clickEvent) {
                 var srcOfClickEvent = $(clickEvent.target);
-
-                //if (confirm("Sure to delete")) {
-
-                //}
-                //bootbox.confirm("Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
-                //    function (result) {
-                //        if (result) {
-                //            $.ajax({
-                //                url: "/api/GigsApi/" + srcOfClickEvent.attr("gigId"),
-                //                method: "Delete" // as our api method is decorated with http delete
-
-                //            }).done(function () {
-                //                //remove link from dom
-                //                srcOfClickEvent.parents("li").fadeOut(function () {
-                //                    $(this).remove();
-                //                })
-                //            }).fail(function () {
-                //                alert("Something went wrong.");
-                //            });
-                //        } else {
-                //            alert("Cancelled got Cancelled.");
-                //        }
-                //    });
                 bootbox.confirm({
                     message: "Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
                     buttons: {

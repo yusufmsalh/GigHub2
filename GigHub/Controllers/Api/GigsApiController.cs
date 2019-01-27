@@ -26,12 +26,17 @@ namespace GigHub.Controllers.Api
             var currentlyloggedUserId = User.Identity.GetUserId();
             var gig = dbContext.Gigs.
                 SingleOrDefault(e => e.Id == id && e.ArtistId ==currentlyloggedUserId);
-            if (gig != null)
+            if (gig != null && gig.IsCancelled !=true)
             {
                 gig.IsCancelled = true;// use enum
                 dbContext.SaveChanges();
 
             }
+            else
+            {
+                return NotFound();
+            }
+
 
             return Ok(); // 20160525172043_3
         }
