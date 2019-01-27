@@ -29,8 +29,6 @@ namespace GigHub.Controllers
             {
                 UpComingGigs = upComingGigs,
                 IsAuthenticated = isAuthenticated
-
-
             };
             return View(homeViewModel);
         }
