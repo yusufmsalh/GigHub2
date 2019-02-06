@@ -14,6 +14,8 @@ namespace GigHub.Models
         public DbSet<Genere> Generes { get; set; }
         public DbSet<Attendence> Attendences { get; set; }//Event of user attending a Party
         public DbSet<FollowingRelation> Following { get; set; }
+        public DbSet<UserNotification> UserNotification { get; set; }
+        public DbSet<Notification> Notification { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -45,6 +47,11 @@ namespace GigHub.Models
                 .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
 
+            //below line to disable cascade delete from one side of Many to Many Relation
+            dbModelBuilder.Entity<UserNotification>()
+                .HasRequired(u => u.User)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             base.OnModelCreating(dbModelBuilder);
         }
 
