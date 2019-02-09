@@ -26,10 +26,11 @@ namespace GigHub.Controllers.Api
             var currentlyloggedUserId = User.Identity.GetUserId();
             var gig = dbContext.Gigs.
                 SingleOrDefault(e => e.Id == id && e.ArtistId == currentlyloggedUserId);
-            if (gig != null && gig.IsCancelled != true)
+            if (gig != null && gig.IsCancelled != true)//avoid duplicate cancellation
             {
                 gig.IsCancelled = true;// use enum
-                dbContext.SaveChanges();
+                dbContext.SaveChanges();//Refactor
+                #region Here ,I simply want to broadcasr a single message (cancel gig) to all assoicated users
                 #region Creating A Cancel -Notification Object
                 var notification = new Notification()
                 {
@@ -46,17 +47,31 @@ namespace GigHub.Controllers.Api
                 #endregion
                 #region for each attender ,Send Him A notification
                 foreach (var attendee in thoseWhoAttendThisGig)
-                {//generating a  user-notification object 
+                {
+                    //generating a  user-notification object 
                     //for each attender.
-                    var userNotfication = new UserNotification()
-                    {
-                        User = attendee,
-                        Notification = notification
 
-                    };
-                    dbContext.UserNotification.Add(userNotfication);
-                } 
-                    dbContext.SaveChanges();
+                    attendee.Notifiy(notification);
+                    #region Pre Refatoring the above line
+                    //var userNotfication = new UserNotification()
+                    //{
+                    //    User = attendee,
+                    //    Notification = notification
+                    //    dbContext.UserNotification.Add(userNotfication);
+                    //};
+                    //1-move this  to a sperate method in the ApplicationUser Class
+                    //2- Use: this --current object .
+                    //3-Notification : passed as Parameter
+
+                    /* Region : Replacing dbContext in the private Method
+                    //4-dbContext : Add A Local Navigation Property to The Application User Class,
+                    //add new object to Navigation property and EF will Add to DB (UserNotification.Add(userNotfication)).
+                    //5-Intialize list in the ApplictionUser Ctor
+                       End Region */
+                    #endregion
+                }
+                dbContext.SaveChanges();
+                #endregion 
                 #endregion
             }
             else
@@ -67,5 +82,7 @@ namespace GigHub.Controllers.Api
 
             return Ok(); 
         }
+
+       
     }
 }
