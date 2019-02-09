@@ -32,14 +32,18 @@ namespace GigHub.Controllers.Api
                 dbContext.SaveChanges();//Refactor
                 #region Here ,I simply want to broadcast a single message (cancel gig) to all assoicated users
                 #region Creating A Cancel -Notification Object
-                var notification = new Notification()
-                {
-                    // creating a  a cancelling notification 
-                    Gig = gig,
-                    DateTime = DateTime.Now,
-                    Type = NotificationType.GigCancelled
-                };
-                #endregion
+
+                var notification = new Notification(gig, NotificationType.GigCancelled);
+                #region How to refactor
+                /*
+         *Steps to refactor:
+         * 1- create 2 ctor ,paramertrize with null ref exception to ensure required obj(gig).
+         * 2- and a default one for EF
+         * 3-set private setter for that object (gig)/ whatever passed in ctor ,to make it only set by ctor not by code.
+         * 4- re write calling the class like new Notification(gig, NotificationType.GigCancelled);
+         */
+
+                #endregion               #endregion
                 #region Getting Those who will attend the Gig
                 var thoseWhoAttendThisGig = dbContext.Attendences
                         .Where(a => a.GigId == gig.Id)
@@ -53,7 +57,7 @@ namespace GigHub.Controllers.Api
 
                     attendee.Notifiy(notification);
                     #region Pre Refatoring the above line
-                    //var userNotfication = new UserNotification()
+                    //  var userNotfication = new UserNotification()
                     //{
                     //    User = attendee,
                     //    Notification = notification
@@ -71,7 +75,8 @@ namespace GigHub.Controllers.Api
                     #endregion
                 }
                 dbContext.SaveChanges();
-                #endregion 
+                #endregion
+                #endregion
                 #endregion
             }
             else
@@ -80,9 +85,9 @@ namespace GigHub.Controllers.Api
             }
 
 
-            return Ok(); 
+            return Ok();
         }
 
-       
+
     }
 }
