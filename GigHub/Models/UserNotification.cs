@@ -23,11 +23,29 @@ namespace GigHub.Models
         [Column(Order = 2)]
         public int NotificationId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; private  set; }
 
-        public Notification Notification { get; set; }
+        public Notification Notification { get;  private  set; }
 
         public bool IsRead { get; set; }
 
+
+        public UserNotification( ApplicationUser user, Notification notification)
+        {
+            if (notification == null)
+                throw new ArgumentNullException("notification cannot be null inside UserNotification Class");
+            if (user == null)
+                throw new ArgumentNullException("user cannot be null inside UserNotification Class");
+            User = user;
+            Notification = notification;
+
+
+
+        }
+
+        public UserNotification()
+        {
+            
+        }
     }
 }

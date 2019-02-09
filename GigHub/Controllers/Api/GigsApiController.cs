@@ -30,7 +30,7 @@ namespace GigHub.Controllers.Api
             {
                 gig.IsCancelled = true;// use enum
                 dbContext.SaveChanges();//Refactor
-                #region Here ,I simply want to broadcasr a single message (cancel gig) to all assoicated users
+                #region Here ,I simply want to broadcast a single message (cancel gig) to all assoicated users
                 #region Creating A Cancel -Notification Object
                 var notification = new Notification()
                 {

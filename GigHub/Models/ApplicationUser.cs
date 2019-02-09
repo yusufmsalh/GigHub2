@@ -45,12 +45,19 @@ namespace GigHub.Models
             //and that who may instate the usernotification 
             //may not follow this rule 
             #endregion
-            var userNotfication = new UserNotification()
-            {
-                User = this,
-                Notification = notification
-            };
-            UserNotification.Add(userNotfication);
+            #region Refatoring the below line goes in steps
+            /*
+             * inside UserNotification Class
+             *  1- add a paramertize consructor with null ref expection to ensure both user and notification is not null
+             *  2- add a default ctor to be used by EF for object intialization as it cannot use the above code.
+             *  3-set 2 as private to be be only accessed by EF and not by code
+             *  4-set private setter for both user and notification memebrs ,so they wouldn't be changed.
+             * 5-refactor the UserNotification.Add(userNotification) line.
+                    var userNotfication = new UserNotification(this, notification);        
+                    UserNotification.Add(userNotfication);
+             */ 
+            #endregion
+            UserNotification.Add(new UserNotification(this, notification));
         }
     }
 
