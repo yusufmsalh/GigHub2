@@ -42,11 +42,16 @@ namespace GigHub.Controllers
         {
             var userID = User.Identity.GetUserId();
             var myUpcommmingGigs = dbContext.Gigs.
-                Where(e => e.ArtistId == userID && e.DateTime > DateTime.MinValue && e.IsCancelled ==true)//fix date later
+                Where(e => e.ArtistId == userID && e.DateTime > DateTime.MinValue && e.IsCancelled ==false)//fix date later
                 .Include(yusuf => yusuf.Genere)
                 .ToList();
             return View(myUpcommmingGigs);
 
+        }
+        public ActionResult WhoIAmFollowing()
+        {
+            dbContext.Attendences.ToList();
+            return View();
         }
 
         #endregion
@@ -60,7 +65,7 @@ namespace GigHub.Controllers
                 Generes = dbContext.Generes.ToList(),
                 Heading = "Create New Gig"
             };
-            return View("GigForm.cshtml", gigsViewModel);
+            return View("GigForm", gigsViewModel);
 
         }
         [HttpPost]
@@ -71,7 +76,7 @@ namespace GigHub.Controllers
             {
                 viewModel.Generes = dbContext.Generes.ToList();//bug fix : while post back ,viewModel is a new object ,Geners not intialized
 
-                return View("Create", viewModel);
+                return View("GigForm", viewModel);
             }
 
             var gig = new Gig()
@@ -83,7 +88,7 @@ namespace GigHub.Controllers
             };
             dbContext.Gigs.Add(gig);
             dbContext.SaveChanges();
-            return RedirectToAction("ViewMyUpCommingGigs", "Home");
+            return RedirectToAction("ViewMyUpCommingGigs", "Gigs");
             //return View();
         }
 

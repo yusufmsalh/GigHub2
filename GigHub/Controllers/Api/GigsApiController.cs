@@ -27,12 +27,13 @@ namespace GigHub.Controllers.Api
             var currentlyloggedUserId = User.Identity.GetUserId();
             #region Eager load the part and those who will attend it
             var gig = dbContext.Gigs.Include(e => e.Attendence.Select(a => a.Attender)).
-            SingleOrDefault(e => e.Id == id && e.ArtistId == currentlyloggedUserId);  
+            SingleOrDefault(e => e.Id == id && e.ArtistId == currentlyloggedUserId);
             #endregion
             if (gig != null && gig.IsCancelled != true)//avoid duplicate cancellation
             {
                 gig.CancelGig();
-              
+                dbContext.SaveChanges();
+
             }
             else
             {
