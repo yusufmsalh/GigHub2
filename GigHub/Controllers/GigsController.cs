@@ -130,9 +130,9 @@ namespace GigHub.Controllers
             gig = dbContext.Gigs.Where(e => e.Id == gigFormViewModel.Id && e.ArtistId == currentlyloggedUserId).SingleOrDefault();
             if (gigFormViewModel != null)
             {
-                gig.Venue = gigFormViewModel.Venue;
-                gig.DateTime = gigFormViewModel.GetDateTime();
-                gig.GenereId = gigFormViewModel.Genere;
+                gig.Modifiy(gigFormViewModel.Venue, gigFormViewModel.GetDateTime(), gigFormViewModel.Genere);
+                
+
                 //dbContext.Gigs.Attach(gig);
                 dbContext.SaveChanges();
             }
