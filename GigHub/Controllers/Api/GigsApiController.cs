@@ -31,7 +31,7 @@ namespace GigHub.Controllers.Api
             #endregion
             if (gig != null && gig.IsCancelled != true)//avoid duplicate cancellation
             {
-                gig.Cancel();
+                gig.CancelGig();
               
             }
             else

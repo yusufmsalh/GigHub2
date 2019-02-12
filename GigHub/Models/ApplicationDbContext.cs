@@ -33,8 +33,9 @@ namespace GigHub.Models
             //here we use fluent api,that goes like
             //entity,directio 1 ,other direction ,cascade delete = false.
             //make sure to call base .on model creating  due to msdn overrides
-            dbModelBuilder.Entity<Attendence>().
-                HasRequired(a => a.Gig).WithMany()
+            dbModelBuilder.Entity<Attendence>()
+                .HasRequired(a => a.Gig) // each attendence has required gig
+                .WithMany(gig=>gig.Attendence)// each gig has multiple attendence
                 .WillCascadeOnDelete(false);
 
             dbModelBuilder.Entity<ApplicationUser>()
@@ -49,8 +50,8 @@ namespace GigHub.Models
 
             //below line to disable cascade delete from one side of Many to Many Relation
             dbModelBuilder.Entity<UserNotification>()
-                .HasRequired(u => u.User)
-                .WithMany()
+                .HasRequired(u => u.User)// each UserNotification has required user
+                .WithMany(un=>un.UserNotification)// each User has many UserNotifications
                 .WillCascadeOnDelete(false);
             base.OnModelCreating(dbModelBuilder);
         }
