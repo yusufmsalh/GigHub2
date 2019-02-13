@@ -16,7 +16,7 @@ namespace GigHub.Controllers
         {
             dbContext = new ApplicationDbContext();
         }
-        // GET: Followee
+        // GET: Followee/Index
         public ActionResult Index()
         {//Who I am Following
             var currentlyloggedUserId = User.Identity.GetUserId();//follower wants to follow below artist
