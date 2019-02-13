@@ -10,7 +10,7 @@ namespace GigHub.Models
         public NotificationType Type { get; private set; }
         public DateTime? OriginalDateTime { get; set; }
         public string OriginalVenue { get; set; }
-        [Required]// force a notification to have a required gig
+     //   [Required]// no need for validation here.
         public Gig Gig { get;  private set; }
 
 

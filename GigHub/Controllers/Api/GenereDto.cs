@@ -1,10 +1,8 @@
-﻿namespace GigHub.Models
+﻿namespace GigHub.Controllers.Api
 {
-    public class Genere
+    public class GenereDto
     {
         public byte Id { get; set; }
         public string Name { get; set; }
     }
- 
-
 }
