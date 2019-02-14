@@ -19,7 +19,6 @@ namespace GigHub.Controllers
         }
         public ActionResult Index()
         {
-
             var upComingGigs = dbContext.Gigs
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)

@@ -273,10 +273,6 @@
     <Compile Include="Migrations\201902021304593_AddingNotification.Designer.cs">
       <DependentUpon>201902021304593_AddingNotification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902120727367_Foo.cs" />
-    <Compile Include="Migrations\201902120727367_Foo.Designer.cs">
-      <DependentUpon>201902120727367_Foo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendence.cs" />
     <Compile Include="Models\Following.cs" />
@@ -424,9 +420,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902021304593_AddingNotification.resx">
       <DependentUpon>201902021304593_AddingNotification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902120727367_Foo.resx">
-      <DependentUpon>201902120727367_Foo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
