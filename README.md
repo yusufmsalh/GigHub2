@@ -47,8 +47,11 @@ Part 2 :
 * 22- Implementing Update Mehtod using the same view used in Add operation.
 * 23-Using Expression <Func> to get method name in run time and route too which action : add or edit.
 * 24- Implementing Logical Delete : ajax -api .
- *25 - using bootbox : a js library to make bootstrap modals.
-
+* 25 - using bootbox : a js library to make bootstrap modals.
+* 26- Gradually Building a Notification System to display User notification when a Gig is Changed (Upated ,Cancelled).
+* 27 - Refactoing : usign Factory method if my constructor has more logic that setting Parameters 
+ * 28 - Refactoring : protecting state of created object by creating a single method responsible for that ,with private setter.
+ * 29 - using Dtos : when I don't want to expose all the data of my model to the client.
  
 
 
