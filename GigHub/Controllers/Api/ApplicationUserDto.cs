@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GigHub.Controllers.Api
 {
-    public class UserDto
+    public class ApplicationUserDto
     {
         public string Id { get; set; }
         public string Name { get; set; }
