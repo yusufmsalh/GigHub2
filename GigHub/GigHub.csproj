@@ -217,12 +217,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\AttendeceController.cs" />
     <Compile Include="Controllers\Api\FollowingController.cs" />
-    <Compile Include="Controllers\Api\GenereDto.cs" />
-    <Compile Include="Controllers\Api\GigDto.cs" />
+    <Compile Include="DTO\GenereDto.cs" />
+    <Compile Include="DTO\GigDto.cs" />
     <Compile Include="Controllers\Api\GigsApiController.cs" />
     <Compile Include="Controllers\Api\NotificationController.cs" />
-    <Compile Include="Controllers\Api\NotificationDto.cs" />
-    <Compile Include="Controllers\Api\ApplicationUserDto.cs" />
+    <Compile Include="DTO\NotificationDto.cs" />
+    <Compile Include="DTO\ApplicationUserDto.cs" />
     <Compile Include="Controllers\FolloweeController.cs" />
     <Compile Include="DTO\FollowingDTO.cs" />
     <Compile Include="Controllers\GigsController.cs" />

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using GigHub.Controllers.Api;
- 
+using GigHub.DTO;
+
 namespace GigHub.Models
 {
     public class AutoMapperProfile : Profile

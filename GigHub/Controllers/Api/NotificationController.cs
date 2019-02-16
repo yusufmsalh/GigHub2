@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper.QueryableExtensions;
+using GigHub.DTO;
 
 namespace GigHub.Controllers.Api
 {
