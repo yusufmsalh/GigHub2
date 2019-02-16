@@ -52,6 +52,8 @@ Part 2 :
 * 27 - Refactoing : usign Factory method if my constructor has more logic that setting Parameters 
  * 28 - Refactoring : protecting state of created object by creating a single method responsible for that ,with private setter.
  * 29 - using Dtos : when I don't want to expose all the data of my model to the client.
+ * 30 - using autoMapper : a greate package to auto map map models to dtos so you don't wrie your mapping manually ,check this link as Mosh using old version of automapper ,use link to work with new version https://bit.ly/2qu8O4B.
+ 
  
 
 
