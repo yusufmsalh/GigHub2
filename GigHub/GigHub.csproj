@@ -300,6 +300,7 @@
     <Compile Include="ViewModels\WhoIAmFollowingListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Site.css" />
