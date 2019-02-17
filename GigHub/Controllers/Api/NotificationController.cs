@@ -31,7 +31,6 @@ namespace GigHub.Controllers.Api
 
             var newNotificationList = dbContext.
                 #region Getting New Notifications for Currently Logged User ,Eager load Gig,Artist to display them
-
                 UserNotification
                 .Where(un => un.UserId == currentlyLoggedUserId && un.IsRead == false)
                 .Select(e => e.Notification)
@@ -40,43 +39,8 @@ namespace GigHub.Controllers.Api
                 .ToList();
 
 
+            //newNotificationList[0].Gig.Artist.Name;
 
-
-                //Select(notification => new NotificationDto()
-                //        {
-                //            #region NotificationDto
-                //            Id = notification.Id,
-                //            DateTime = notification.DateTime,
-                //            Type = notification.Type,
-                //            OriginalDateTime = notification.OriginalDateTime,
-                //            OriginalVenue = notification.OriginalVenue,
-                //            #region GigDto
-                //            Gig = new GigDto()
-                //            {
-                //                Id = notification.Gig.Id,
-                //                DateTime = notification.Gig.DateTime,
-                //                GenereId = notification.Gig.GenereId,
-                //                IsCancelled = notification.Gig.IsCancelled,
-                //                Venue = notification.Gig.Venue,
-                //                #region UserDto
-                //                Artist = new UserDto()
-                //                {
-                //                    Id = notification.Gig.Artist.Id,
-                //                    Name = notification.Gig.Artist.Name
-                //                },
-                //                #endregion
-                //                #region GenereDto
-
-                //                GenereDto = new GenereDto()
-                //                {
-                //                    Id = notification.Gig.Genere.Id,
-                //                    Name = notification.Gig.Genere.Name
-                //                }
-                //                #endregion
-                //            }
-                //            #endregion
-                //            #endregion
-                //        }); 
             #endregion
             return newNotificationList;
         }
