@@ -50,14 +50,16 @@
                     $('#iconNotifiy')
                         .text(notifications.length)
                         .removeClass("hide")
-                    .addClass("animated bounceInDown");
+                    .addClass("animated bounceInDown");//mandatory class - effect style
                 });
             $(".notification").popover({
-
                 html: true,
                 title: "Notifications",
                 content:function() {
-                    return "Hello World";
+                    //here to return the content
+                    var template = _.template("Hello <%= name %>");// create a template  using a _.template 
+                    var html = template({ name: "Mosh" }); // set the value here .
+                    return html;
                 },
                 placement :"bottom"
             });
