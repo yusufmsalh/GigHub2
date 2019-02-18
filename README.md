@@ -53,6 +53,13 @@ Part 2 :
  * 28 - Refactoring : protecting state of created object by creating a single method responsible for that ,with private setter.
  * 29 - using Dtos : when I don't want to expose all the data of my model to the client.
  * 30 - using autoMapper : a greate package to auto map map models to dtos so you don't wrie your mapping manually ,check this link as Mosh using old version of automapper ,use link to work with new version https://bit.ly/2qu8O4B.
+ * 31 -Customizing WebApi to return Camel Case instead of Pascal Case as javascript loves Camels.
+ * 32 - Using Bootstrap icons and badges.
+ *  33 - Using Animate.css to Animate the Notification Count
+ * 34 - Buidling A static PopOver
+ *35  - Customizing Popover to get it's content from Api (note for fellow developers : use popover-title and popover-content classes in pop over template not popover-header and popover-body to make the code work with you.
+ *36- Using moment.js : your best friend to parse ,manipulate and display dates in JavaScript.
+ 
  
  
 
