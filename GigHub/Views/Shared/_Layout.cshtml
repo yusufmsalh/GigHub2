@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Indie+Flower" rel="stylesheet">
-
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
 
 </head>
 <body>
@@ -43,17 +44,23 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-<script type="text/myNotificationTemplate" id="notificationTemplate">
+<script type="text/myNotificationTemplate" id="notificationTemplate"> 
+    @*<style>
+        ul.notification > li:last-child {
+            border-bottom: none;
+        }
+    </style>*@
 
-        <ul style="list-style : none; padding-left: 0">
+        <ul style="list-style : none; padding-left: 0 ;">
             <%
             _.each(notificationArr,function(notification)
             {
                     if(notification.type == 1)
                     { %>
-                        <li>
-                        <%= notification.gig.artist.name %> has cancelled the gig in  <%= notification.gig.venue %>  at   <%= notification.gig.dateTime %>
-                        </li>
+           
+                        <li style="border-bottom : 1px solid #ddd; padding : 10px 0;">
+                            <strong><%= notification.gig.artist.name %> </strong> has cancelled the gig in  <%= notification.gig.venue %>  at   <%= notification.gig.dateTime %>
+                        </li>         
                         <%
                     }
                     else if (notification.type == 2) 
@@ -74,12 +81,12 @@
                             newValues.push(notification.gig.dateTime);
                         }
                     %>
-                    <li><%= notification.gig.artist.name %> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
+            
+                    <li> <strong><%= notification.gig.artist.name %> </strong> has changed the <%= changes.join(' and ') %> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %></li>
                     <%
                 }
-               
           });
-            %>
+                        %>
         </ul>
 
     </script>
@@ -87,7 +94,6 @@
         $(document).ready(function () {
             $.getJSON("/api/Notification",
                 function (notificationsArrFromApi) {
-                    debugger;
                     if (notificationsArrFromApi.length == 0)
                         return;
                     $('#iconNotifiy')
@@ -96,9 +102,8 @@
                         .addClass("animated bounceInDown");//mandatory class - effect style
                     $(".notification").popover({ // settings of popover
                         html: true,
-                        title: "Notifications",
+                        header: "Notifications",
                         content: function () {
-                            debugger;
                             //here to return the content
                             var template = _.template($("#notificationTemplate").html());// create a template  using a _.template,a method to return semi-template
                             var html = template({
@@ -106,7 +111,12 @@
                             }); // set the value here .
                             return html;
                         },
-                        placement: "bottom"
+                        placement: "bottom",
+                        template: '<div class="popover popover-notification" role="tooltip">' +
+                                    '<div class="arrow"></div>' +
+                                    '<h3 class="popover-title"></h3>' +
+                                    '<div class="popover-content"></div>' +
+                                   '</div>'
                     });
                 });
 

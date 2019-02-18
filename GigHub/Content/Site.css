@@ -161,7 +161,17 @@ h6,
 div.actions a {
     font-size: 15px !important;
     display:block  !important;
+
 }
+/*ul.notification
+{
+    list-style : none;
+     padding-left: 0 ;
+}*/
+.popover-notification.popover-content{
+    padding : 12px;
+} 
+
 
 
 
