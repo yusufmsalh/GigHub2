@@ -23,8 +23,8 @@ in this course  I have learned :
 * 4-Building a Model With Code first Approach 
 * 5-Using Data Annotation to Override Entity framework convention
 * 6-Buidling Nice Looking Forms with Bootstrap.
-* 7-Using ViewModels to provide UI Separation from Domai
-* 8-Implementing Custom Validation Attributes with data annotation like : required ,range ,MaxLength,...
+* 7-Using ViewModels to provide UI Separation from Domain
+* 8-Implementing Custom Validation Attributes with data annotation like : required ,range ,MaxLength,... and creating custom validation Classes
 * 9-Improving User Experience Of Using Application.
 * 10-Using Visual Studio / Reshaper Shortcuts for faster coding and more productivity.
 * 11-Writing Cleane Code.
@@ -53,6 +53,15 @@ Part 2 :
  * 28 - Refactoring : protecting state of created object by creating a single method responsible for that ,with private setter.
  * 29 - using Dtos : when I don't want to expose all the data of my model to the client.
  * 30 - using autoMapper : a greate package to auto map map models to dtos so you don't wrie your mapping manually ,check this link as Mosh using old version of automapper ,use link to work with new version https://bit.ly/2qu8O4B.
+ * 31 -Customizing WebApi to return Camel Case instead of Pascal Case as javascript loves Camels.
+ * 32 - Using Bootstrap icons and badges.
+ *  33 - Using Animate.css to Animate the Notification Count
+ * 34 - Buidling A static PopOver
+ * 35  - Customizing Popover to get it's content from Api (note for fellow developers : use popover-title and popover-content classes in pop over template not popover-header and popover-body to make the code work with you.
+ * 36- Using moment.js : your best friend to parse ,manipulate and display dates in JavaScript.
+ * 37- Using Less : A dynamic Style Sheet Language ,that gets compiled to css at run time (simply write  less css- a more elegant way).
+ *40 - using undescore.js : among it's useful features ,here I have learbed how to use undescore.js as a templating engin which means how to format a template for popover ,that get rendered on the client(ie : fill the template with the notifications retured from the api).
+ 
  
  
 
