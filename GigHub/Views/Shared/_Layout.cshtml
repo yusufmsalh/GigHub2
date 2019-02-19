@@ -40,7 +40,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/lib")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
@@ -59,7 +59,7 @@
                     { %>
            
                         <li style="border-bottom : 1px solid #ddd; padding : 10px 0;">
-                            <strong><%= notification.gig.artist.name %> </strong> has cancelled the gig in  <%= notification.gig.venue %>  at   <%= notification.gig.dateTime %>
+                            <strong><%= notification.gig.artist.name %> </strong> has cancelled the gig in  <%= notification.gig.venue %>  at   <%= moment(notification.gig.dateTime).format("D MMM  HH:mm") %>
                         </li>         
                         <%
                     }
@@ -77,8 +77,8 @@
                         if (notification.originalDateTime != notification.gig.dateTime) 
                         {
                             changes.push('date/time');
-                            originalValues.push(notification.originalDateTime);
-                            newValues.push(notification.gig.dateTime);
+                            originalValues.push(moment(notification.originalDateTime).format("D MMM  HH:mm"));
+                            newValues.push(moment(notification.gig.dateTime).format("D MMM  HH:mm"));
                         }
                     %>
             
