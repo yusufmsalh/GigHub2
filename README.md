@@ -23,8 +23,8 @@ in this course  I have learned :
 * 4-Building a Model With Code first Approach 
 * 5-Using Data Annotation to Override Entity framework convention
 * 6-Buidling Nice Looking Forms with Bootstrap.
-* 7-Using ViewModels to provide UI Separation from Domai
-* 8-Implementing Custom Validation Attributes with data annotation like : required ,range ,MaxLength,...
+* 7-Using ViewModels to provide UI Separation from Domain
+* 8-Implementing Custom Validation Attributes with data annotation like : required ,range ,MaxLength,... and creating custom validation Classes
 * 9-Improving User Experience Of Using Application.
 * 10-Using Visual Studio / Reshaper Shortcuts for faster coding and more productivity.
 * 11-Writing Cleane Code.
