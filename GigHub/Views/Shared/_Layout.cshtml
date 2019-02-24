@@ -117,6 +117,15 @@
                                     '<h3 class="popover-title"></h3>' +
                                     '<div class="popover-content"></div>' +
                                    '</div>'
+                    }).on('shown.bs.popover', function () {           
+                        var url = "/api/Notification/MarkNewNotificationsAsRead"
+                        $.ajax({
+                        type: "POST",
+                        url: url,
+                        success :function() {
+                        $('#iconNotifiy').text("").addClass("hide");// Hide notification badge
+                        }                
+                    });
                     });
                 });
 
