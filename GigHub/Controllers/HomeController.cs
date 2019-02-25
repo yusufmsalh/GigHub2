@@ -19,17 +19,17 @@ namespace GigHub.Controllers
         }
         public ActionResult Index()
         {
+            var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
             var upComingGigs = dbContext.Gigs
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)
                 .Where(g => g.DateTime >= DateTime.Now && g.IsCancelled == true);//get only future gigs
-            var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
-            var homeViewModel = new HomeViewModel()
+            var gigsViewModel = new GigsViewModel()
             {
                 UpComingGigs = upComingGigs,
                 IsAuthenticated = isAuthenticated
             };
-            return View(homeViewModel);
+            return View(gigsViewModel);
         }
 
         public ActionResult About()

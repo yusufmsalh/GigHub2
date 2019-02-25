@@ -295,7 +295,7 @@
     <Compile Include="ViewModels\FutureDateValidation.cs" />
     <Compile Include="ViewModels\FutureTimeValidation.cs" />
     <Compile Include="ViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\GigsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\WhoIAmFollowingListViewModel.cs" />
   </ItemGroup>
