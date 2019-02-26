@@ -5,101 +5,102 @@
 }
 <style>
     .no-border:focus {
- border-color:#ccc;
-  outline: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
+        border-color: #ccc;
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
 </style>
 
 <h2>My Upcoming Gigs</h2>
 @* Search Gig Part *@
 @using (@Html.BeginForm("Search", "Gigs", "Post"))
 {
-        <div class="form-group">
-    <div class="input-group" style="width: 300px">
-            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control no-border", @placeholder = "Search by Artist"  })
-            <span class="input-group-addon" >
+    <div class="form-group">
+        <div class="input-group" style="width: 300px">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control no-border", @placeholder = "Search by Artist" })
+            <span class="input-group-addon">
                 <i class="glyphicon glyphicon-search"></i>
             </span>
         </div>
     </div>
-        }
+}
 @* End Of Search Gig Part *@
 <ul class="gigs voffset4">
-            @foreach (var gig in Model.UpComingGigs)
+    @foreach (var gig in Model.UpComingGigs)
             {
-                <li>
-                    <div class="date">
-                        <div class="month">
-                            @gig.DateTime.ToString("MMM")
-                        </div>
-                        <div class="day">
-                            @gig.DateTime.ToString("d ")
-                        </div>
-                    </div>
-                    <div class="details">
-                        <span class="artist">
-                            @gig.Venue
-                            @if (gig.IsCancelled)
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="details">
+                <span class="artist">
+                    @*@Html.ActionLink("Hello ,Click Link","GetGigDetails",new {gigId= gig.Id})*@
+                           @Html.ActionLink(gig.Venue, "GetGigDetails",new {Id = gig.Id })
+                    @*@gig.Venue*@
+                    @if (gig.IsCancelled)
                     {
-                                <span class="label label-warning"> Cancelled</span>
-                            }
-                        </span>
-                        <span class="genre">
-
-                            @gig.Genere.Name
-                        </span>
-                        <div class="actions">
-                            <a href="@Url.Action("Edit", "Gigs", new { id = gig.Id })">Edit</a>
-                            <a href="#" id="btnCancel" gigId="@gig.Id" gigname="@gig.Venue">Cancel</a>
-                        </div>
-                    </div>
-                </li>
-            }
-        </ul>
-        @section scripts
+                        <span class="label label-warning"> Cancelled</span>
+                    }
+                </span>
+                <span class="genre">
+                    @gig.Genere.Name
+                </span>
+                <div class="actions">
+                    <a href="@Url.Action("Edit", "Gigs", new { id = gig.Id })">Edit</a>
+                    <a href="#" id="btnCancel" gigId="@gig.Id" gigname="@gig.Venue">Cancel</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@section scripts
 {
-            <script>
-                $(document).ready(function () {
-                    $('#btnCancel').click(function (clickEvent) {
-                        var srcOfClickEvent = $(clickEvent.target);
-                        bootbox.confirm({
-                            message: "Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
-                            buttons: {
-                                confirm: {
-                                    label: 'Yes',
-                                    className: 'btn-danger'
-                                },
-                                cancel: {
-                                    label: 'No',
-                                    className: 'btn-success'
-                                }
-                            },
-                            callback: function (result) {
-                                if (result) {
-                                    $.ajax({
-                                        url: "/api/GigsApi/" + srcOfClickEvent.attr("gigId"),
-                                        method: "Delete" // as our api method is decorated with http delete
+    <script>
+        $(document).ready(function () {
+            $('#btnCancel').click(function (clickEvent) {
+                var srcOfClickEvent = $(clickEvent.target);
+                bootbox.confirm({
+                    message: "Are You Sure to cancel " + srcOfClickEvent.attr("gigname") + " 's Gig ?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/GigsApi/" + srcOfClickEvent.attr("gigId"),
+                                method: "Delete" // as our api method is decorated with http delete
 
-                                    }).done(function () {
-                                        //remove link from dom
-                                        srcOfClickEvent.parents("li").fadeOut(function () {
-                                            $(this).remove();
-                                        })
-                                    }).fail(function () {
-                                        alert("Something went wrong.");
-                                    });
-                                } else {
-                                    alert("Cancelled got Cancelled.");
-                                }
-                            }
-                        });
-
-                    });
+                            }).done(function () {
+                                //remove link from dom
+                                srcOfClickEvent.parents("li").fadeOut(function () {
+                                    $(this).remove();
+                                })
+                            }).fail(function () {
+                                alert("Something went wrong.");
+                            });
+                        } else {
+                            alert("Cancelled got Cancelled.");
+                        }
+                    }
                 });
 
+            });
+        });
 
-            </script>
-        }
+
+    </script>
+}
 

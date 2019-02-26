@@ -1,0 +1,45 @@
+﻿@model GigHub.Models.Gig
+
+<div>
+
+    <h1>@Model.Venue</h1>
+    @if (ViewBag.Following)
+    {
+        <span class="label label-primary child"> Following</span>
+    }
+    @if (!ViewBag.Following)
+    {
+        <span class="label label-default child"> Not Following</span>
+
+    }
+    <dl class="dl-horizontal karror">
+
+        <dd>
+            @Html.DisplayFor(model => model.Genere.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dd>
+            Performing at @Html.DisplayFor(model => model.Genere.Name)
+               
+        </dd>
+        <dt>
+            on  @Html.DisplayFor(model => model.Venue)
+        </dt>
+    </dl>
+   
+</div>
+<br>
+<br>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

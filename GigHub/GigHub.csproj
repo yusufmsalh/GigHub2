@@ -382,6 +382,7 @@
     <Content Include="Views\Gigs\ViewMyGigs.cshtml" />
     <Content Include="Views\Followee\Index.cshtml" />
     <Content Include="Views\Gigs\ViewMyUpCommingGigs.cshtml" />
+    <Content Include="Views\Gigs\GetGigDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

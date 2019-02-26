@@ -31,7 +31,7 @@ namespace GigHub.Controllers
         public ActionResult ViewMyGigs()
         {
             var userID = User.Identity.GetUserId();
-            var myGigs = dbContext.Attendences.Where(e => e.AttenderId == userID )
+            var myGigs = dbContext.Attendences.Where(e => e.AttenderId == userID)
                 .Select(a => a.Gig)
                 .ToList();
             return View(myGigs);
@@ -50,7 +50,7 @@ namespace GigHub.Controllers
                         a.Artist.Name.Contains(query) ||
                         a.Genere.Name.Contains(query) ||
                         a.Venue.Contains(query));
-               
+
 
             }
 
@@ -67,7 +67,27 @@ namespace GigHub.Controllers
             dbContext.Attendences.ToList();
             return View();
         }
+        public ActionResult GetGigDetails(int Id)
+        {
+            var currentlyloggedUserId = User.Identity.GetUserId();
+            var gig = dbContext.Gigs.Include(a=>a.Genere).SingleOrDefault(a => a.Id == Id);          
+            var artistId = gig.ArtistId;
 
+            //get relation between currently logged user and artist
+            bool isFollowing =
+                dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+
+            if (isFollowing)
+            {
+                ViewBag.Following = true;
+            }
+            else
+            {
+                ViewBag.Following = false;
+
+            }
+            return View(gig);
+        }
         #endregion
         #region Create
         [HttpGet]
@@ -150,7 +170,7 @@ namespace GigHub.Controllers
             if (gigFormViewModel != null)
             {
                 gig.Modifiy(gigFormViewModel.Venue, gigFormViewModel.GetDateTime(), gigFormViewModel.Genere);
-                
+
 
                 //dbContext.Gigs.Attach(gig);
                 dbContext.SaveChanges();
@@ -164,7 +184,7 @@ namespace GigHub.Controllers
         [HttpPost]
         public ActionResult Search(string SearchTerm)
         {
-          return  RedirectToAction("ViewMyUpCommingGigs", "Gigs", new {query = SearchTerm});
+            return RedirectToAction("ViewMyUpCommingGigs", "Gigs", new { query = SearchTerm });
             //var gigsNames = dbContext.Gigs.Where(a => a.Artist.Name.Contains(SearchTerm)).ToList();
             //return View(gigsNames);
         }
