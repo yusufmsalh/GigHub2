@@ -23,10 +23,22 @@ namespace GigHub.Controllers
             var upComingGigs = dbContext.Gigs
                 .Include(g => g.Artist)
                 .Include(e=>e.Genere)
-                .Where(g => g.DateTime >= DateTime.Now && g.IsCancelled == true);//get only future gigs
+
+                //   .Where(g => g.DateTime >= DateTime.Now && g.IsCancelled == true)//get only future gigs
+
+                .ToList() ;
+            foreach (var gig in upComingGigs)
+            {
+                //for each gig
+                //get it's going state
+                //set it in the viewmodel
+                //want set the isGoing property in Viewmodel 
+               
+            }
             var gigsViewModel = new GigsViewModel()
             {
                 UpComingGigs = upComingGigs,
+                IsGoing = false,
                 IsAuthenticated = isAuthenticated
             };
             return View(gigsViewModel);

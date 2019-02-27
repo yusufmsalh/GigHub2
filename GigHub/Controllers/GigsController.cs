@@ -70,12 +70,15 @@ namespace GigHub.Controllers
         public ActionResult GetGigDetails(int Id)
         {
             var currentlyloggedUserId = User.Identity.GetUserId();
-            var gig = dbContext.Gigs.Include(a=>a.Genere).SingleOrDefault(a => a.Id == Id);          
+            var gig = dbContext.Gigs.Include(a=>a.Genere).Include(a=>a.Artist).SingleOrDefault(a => a.Id == Id);          
             var artistId = gig.ArtistId;
 
+            if (gig == null)
+                return HttpNotFound();
+
             //get relation between currently logged user and artist
-            bool isFollowing =
-                dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+            bool isFollowing =dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+            bool isAttending =dbContext.Attendences.Any(a => a.GigId == gig.Id && a.AttenderId == currentlyloggedUserId);
 
             if (isFollowing)
             {
@@ -86,7 +89,9 @@ namespace GigHub.Controllers
                 ViewBag.Following = false;
 
             }
-            return View(gig);
+            GigDetailsViewModel gigDetailsViewModel = new GigDetailsViewModel() { Gig = gig , IsFollowing = isFollowing, IsAttending = isAttending};
+
+            return View(gigDetailsViewModel);
         }
         #endregion
         #region Create
