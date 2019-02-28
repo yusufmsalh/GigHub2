@@ -4,7 +4,19 @@
 }
  
 
-
+@* Search Gig Part *@
+@using (@Html.BeginForm("Search", "Home", "Post"))
+{
+    <div class="form-group">
+        <div class="input-group" style="width: 300px">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control no-border", @placeholder = "Search by Artist" })
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
+        </div>
+    </div>
+}
+@* End Of Search Gig Part *@
 
 <ul class="gigs voffset" style="list-style: none;  ">
     @foreach (var gig in Model.UpComingGigs)
@@ -27,7 +39,7 @@
                     @gig.Genere.Name
                 </span>
                 @if (Model.IsAuthenticated)
-        {
+                {
                 <button gigId="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right" style="margin-left: 16px;">Going ?</button>
 
                 <button FolloweeId="@gig.ArtistId" id="btnFollowing" class="btn btn-link btn-sm pull-right" style="margin-left: 16px;">Following ?</button>

@@ -36,29 +36,17 @@ namespace GigHub.Controllers
                 .ToList();
             return View(myGigs);
         }
-        public ActionResult ViewMyUpCommingGigs(string query = null)
+        public ActionResult ViewMyUpCommingGigs()
         {
             var userID = User.Identity.GetUserId();
-            var myUpcommmingGigs = dbContext.Gigs.Where(e => e.ArtistId == userID &&
-                                                             e.DateTime > DateTime.MinValue &&
-                                                             e.IsCancelled == false) //fix date later
+            var myUpcommmingGigs = dbContext.Gigs
+                .Where( e => e.ArtistId == userID &&
+                        e.DateTime > DateTime.MinValue &&
+                        e.IsCancelled == false) //fix date later
                 .Include(u => u.Genere);
-            if (!string.IsNullOrWhiteSpace(query))
-            {
-                myUpcommmingGigs = myUpcommmingGigs.Where(
-                    a =>
-                        a.Artist.Name.Contains(query) ||
-                        a.Genere.Name.Contains(query) ||
-                        a.Venue.Contains(query));
-
-
-            }
-
             //.ToList();
             GigsViewModel myUpCommingGigsViewModel = new GigsViewModel();
             myUpCommingGigsViewModel.UpComingGigs = myUpcommmingGigs.ToList();
-            myUpCommingGigsViewModel.IsAuthenticated = true;
-            myUpCommingGigsViewModel.SearchTerm = query;
             return View(myUpCommingGigsViewModel);
 
         }
@@ -185,16 +173,7 @@ namespace GigHub.Controllers
         }
 
         #endregion
-        #region Search
-        [HttpPost]
-        public ActionResult Search(string SearchTerm)
-        {
-            return RedirectToAction("ViewMyUpCommingGigs", "Gigs", new { query = SearchTerm });
-            //var gigsNames = dbContext.Gigs.Where(a => a.Artist.Name.Contains(SearchTerm)).ToList();
-            //return View(gigsNames);
-        }
-
-        #endregion
+     
 
     }
 }

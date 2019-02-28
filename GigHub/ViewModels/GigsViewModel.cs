@@ -12,7 +12,7 @@ namespace GigHub.ViewModels
         }
 
         public bool IsAuthenticated { get; set; }
-        public IEnumerable<GigViewModelv2> UpComingGigs { get; set; }
+        public IEnumerable<Gig> UpComingGigs { get; set; }
         public string SearchTerm { get; set; }
         public bool Type { get; set; }
         public bool IsGoing { get; set; }
