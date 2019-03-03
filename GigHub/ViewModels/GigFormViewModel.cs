@@ -31,7 +31,7 @@ namespace GigHub.ViewModels
 
         public DateTime GetDateTime()//Method not prop to avoid Exception caused by reflection in posting back in invalid model state
         {
-            return DateTime.Now;
+            //return DateTime.Now;
             return DateTime.Parse(string.Format("{0} {1}", Date, Time)); // fix it later
         }
         public string Heading { get; set; }// use it to to change the heading of view ,as it's shared among multiple actions

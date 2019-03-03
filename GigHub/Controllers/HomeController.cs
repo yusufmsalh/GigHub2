@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GigHub.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers
 {
@@ -19,6 +20,7 @@ namespace GigHub.Controllers
         }
         public ActionResult Index(string query = null)
         {
+            var currentlyLoggedUserId = User.Identity.GetUserId();
             var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
             var upComingGigs = dbContext.Gigs.Include(g => g.Artist).Include(e => e.Genere)
                 .Where(g => g.DateTime >= DateTime.MinValue && g.IsCancelled == true);        //get only future gigs
@@ -29,17 +31,28 @@ namespace GigHub.Controllers
                         a.Genere.Name.Contains(query) ||
                         a.Venue.Contains(query));
             }
+
+                    var futureAttendecesForCurrentUser =
+                    dbContext.Attendences.Where(a => a.AttenderId == currentlyLoggedUserId 
+                    //   &&a.Gig.DateTime>DateTime.Now
+                    ).ToList()
+                    .ToLookup(attendence =>attendence.GigId) ;
+                    //creats a look up table 
+                    //to quickly look up an attendence by a gid id.
+
             GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
             {
+
                 UpComingGigs = upComingGigs,
                 IsAuthenticated = User.Identity.IsAuthenticated,
-                SearchTerm = query
+                SearchTerm = query,
+                MyAttendences =  futureAttendecesForCurrentUser
             };
+            //load future attendences for the currently logged user
+
+
             return View(myUpCommingGigsViewModel);
-            //for each gig
-            //get it's going state  
-            //set it in the viewmodel
-            //want set the isGoing property in Viewmodel 
+     
         }
 
         public ActionResult About()

@@ -16,5 +16,11 @@ namespace GigHub.ViewModels
         public string SearchTerm { get; set; }
         public bool Type { get; set; }
         public bool IsGoing { get; set; }
+        public ILookup<int, Attendence> MyAttendences { get;  set; }
+        /*
+         *ILookUp is simialr to a dictionary
+         *int : gig id ,key to look by
+         * Attendence : the value(type of elements) to look for.
+         */
     }
 }
