@@ -38,15 +38,31 @@ namespace GigHub.Controllers
         }
         public ActionResult ViewMyUpCommingGigs()
         {
-            var userID = User.Identity.GetUserId();
+            var currentlyLoggedUserID = User.Identity.GetUserId();
+            #region Fat Query
             var myUpcommmingGigs = dbContext.Gigs
-                .Where( e => e.ArtistId == userID &&
-                        e.DateTime > DateTime.MinValue &&
-                        e.IsCancelled == false) //fix date later
-                .Include(u => u.Genere);
+                .Where(e => e.ArtistId == currentlyLoggedUserID &&
+                       e.DateTime > DateTime.MinValue &&
+                       e.IsCancelled == false) //fix date later
+                           .Include(u => u.Genere);
+
+            var futureAttendecesForCurrentUser =
+                dbContext.Attendences.Where(a => a.AttenderId == currentlyLoggedUserID
+                    //   &&a.Gig.DateTime>DateTime.Now
+                    ).ToList()
+                    .ToLookup(attendence => attendence.GigId);
             //.ToList();
-            GigsViewModel myUpCommingGigsViewModel = new GigsViewModel();
+            GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
+            {
+                UpComingGigs = myUpcommmingGigs.ToList(),
+                MyAttendences =futureAttendecesForCurrentUser
+
+            };
             myUpCommingGigsViewModel.UpComingGigs = myUpcommmingGigs.ToList();
+
+
+            #endregion
+      
             return View(myUpCommingGigsViewModel);
 
         }
@@ -58,15 +74,15 @@ namespace GigHub.Controllers
         public ActionResult GetGigDetails(int Id)
         {
             var currentlyloggedUserId = User.Identity.GetUserId();
-            var gig = dbContext.Gigs.Include(a=>a.Genere).Include(a=>a.Artist).SingleOrDefault(a => a.Id == Id);          
+            var gig = dbContext.Gigs.Include(a => a.Genere).Include(a => a.Artist).SingleOrDefault(a => a.Id == Id);
             var artistId = gig.ArtistId;
 
             if (gig == null)
                 return HttpNotFound();
 
             //get relation between currently logged user and artist
-            bool isFollowing =dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
-            bool isAttending =dbContext.Attendences.Any(a => a.GigId == gig.Id && a.AttenderId == currentlyloggedUserId);
+            bool isFollowing = dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+            bool isAttending = dbContext.Attendences.Any(a => a.GigId == gig.Id && a.AttenderId == currentlyloggedUserId);
 
             if (isFollowing)
             {
@@ -77,7 +93,7 @@ namespace GigHub.Controllers
                 ViewBag.Following = false;
 
             }
-            GigDetailsViewModel gigDetailsViewModel = new GigDetailsViewModel() { Gig = gig , IsFollowing = isFollowing, IsAttending = isAttending};
+            GigDetailsViewModel gigDetailsViewModel = new GigDetailsViewModel() { Gig = gig, IsFollowing = isFollowing, IsAttending = isAttending };
 
             return View(gigDetailsViewModel);
         }
@@ -173,7 +189,7 @@ namespace GigHub.Controllers
         }
 
         #endregion
-     
+
 
     }
 }

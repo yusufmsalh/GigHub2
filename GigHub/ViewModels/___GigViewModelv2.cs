@@ -24,7 +24,7 @@ namespace GigHub.ViewModels
         public string Venue { get; set; }
         public bool IsCancelled { get; private set; }
         public ICollection<Attendence> Attendence { get; private set; }
-        public bool isGoing { get; set; }
+        public bool IsGoing { get; set; }
         public GigViewModelv2()
         {
             Attendence = new Collection<Attendence>();

@@ -23,7 +23,7 @@ namespace GigHub.Controllers
             var currentlyLoggedUserId = User.Identity.GetUserId();
             var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
             var upComingGigs = dbContext.Gigs.Include(g => g.Artist).Include(e => e.Genere)
-                .Where(g => g.DateTime >= DateTime.MinValue && g.IsCancelled == true);        //get only future gigs
+                .Where(g => g.DateTime >= DateTime.MinValue && g.IsCancelled == false);        //get only future gigs
             if (!string.IsNullOrWhiteSpace(query))
             {
                 upComingGigs = upComingGigs
@@ -42,7 +42,6 @@ namespace GigHub.Controllers
 
             GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
             {
-
                 UpComingGigs = upComingGigs,
                 IsAuthenticated = User.Identity.IsAuthenticated,
                 SearchTerm = query,
@@ -68,7 +67,7 @@ namespace GigHub.Controllers
 
             return View();
         }
-        #region Search
+     
         [HttpPost]
         public ActionResult Search(string SearchTerm)
         {
@@ -76,7 +75,7 @@ namespace GigHub.Controllers
 
         }
 
-        #endregion
+        
 
     }
 }

@@ -6,12 +6,12 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-   //[Authorize] add after testing
+    //[Authorize] add after testing
     public class AttendeceController : ApiController
     {
         private ApplicationDbContext dbContext;
 
-        public AttendeceController() 
+        public AttendeceController()
         {
             dbContext = new ApplicationDbContext();
         }
@@ -43,7 +43,22 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
+        [HttpDelete]
+        public IHttpActionResult DeleteAttendece(int id)
+        {
+            #region Avoid Duplicate Attendence
+            var attenderId = User.Identity.GetUserId();
+            var gigId = id;
+            var attendenceToBeRemoved =
+                dbContext.Attendences.SingleOrDefault(a => a.AttenderId == attenderId && a.GigId == gigId);
+            if (attendenceToBeRemoved == null)
+                return NotFound();
 
+            dbContext.Attendences.Remove(attendenceToBeRemoved);
+            dbContext.SaveChanges();
+            #endregion
+            return Ok(id);
+        }
         #region Demo Method
         //public IHttpActionResult AddGig(string x)
         //{

@@ -36,8 +36,6 @@
                     @*@gig.Artist.Name*@
                     @*@Html.ActionLink(gig.Venue, "GetGigDetails", new {Id = gig.Id })*@
                     <a href="@Url.Action("GetGigDetails", "Gigs", new { id = gig.Id }) "> @gig.Artist.Name </a>
-
-
                 </span>
                 <span class="genere">
                     @gig.Genere.Name
@@ -48,14 +46,11 @@
                     <button FolloweeId="@gig.ArtistId" id="btnFollowing" class="btn btn-link btn-sm pull-right" style="margin-left: 16px;">Following ?</button>
                     if (Model.MyAttendences.Contains(gig.Id))
                     {
-                    <label gigId="@gig.Id" id="btnGoing" class="label label-success  pull-right" style="margin-left: 16px;">Going</label>
-
-
+                        <button gigId="@gig.Id"  class="btn btn-success  pull-right btnGoing" style="margin-left: 16px;">Going</button>
                     }
-                   else
+                    else
                     {
-                        <button gigId="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right" style="margin-left: 16px;">Not Going</button>
-
+                        <button gigId="@gig.Id"  class="btn btn-default btn-sm pull-right btnGoing" style="margin-left: 16px;">Not Going</button>
 
                     }
                 }
@@ -69,27 +64,44 @@
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            $("#btnGoing").click(function (e) {
+        $(document).ready(function() {
+            $(".btnGoing").click(function (e) {
+           
+                var button = $(e.target);
                 debugger;
-                $.post("/api/Attendece", { GigId: $(e.target).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
+                if (button.hasClass('btn-default')) // toggle to isGoing
+                {
+                
+                    $.post("/api/Attendece",
+                            { GigId: $(button).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
+                        .done(function() {
+                            button.text('Going').removeClass('btn-default').addClass('btn-success');
+                        })
+                        .fail(function(parameters) {
+                            button.text('Failed To Update').addClass('btn-danger');
+                        })
+                } else {
+                    debugger;
+             
+                    $.ajax({
+                        url: "/api/Attendece/" + button.attr("gigId"),
+                        method: "DELETE"
+                    }).done(function() {
+                        button.text('Going ?').removeClass('btn-success').addClass('btn-default');
+                    }).fail(function() {
+                        alert('Something went wrong');
+                    })
 
-                .done(function () {
-                    $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
-                })
-                .fail(function (parameters) {
-                    $('#btnGoing').text('Failed To Update').addClass('btn-danger');
-                })
-
+                }
             });
-            $("#btnFollowing").click(function (e) {
+
+            $("#btnFollowing").click(function(e) {
                 debugger;
                 $.post("/api/Following", { FolloweeId: $(e.target).attr("FolloweeId") })
-
-                    .done(function () {
+                    .done(function() {
                         $('#btnFollowing').text('Following').removeClass('btn-default').addClass('btn-success');
                     })
-                    .fail(function (parameters) {
+                    .fail(function(parameters) {
                         $('#btnFollowing').text('Failed To Update').addClass('btn-danger');
                     })
 
