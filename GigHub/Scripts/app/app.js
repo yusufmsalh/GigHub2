@@ -40,36 +40,47 @@
         }
    }
    Person.SayHelloExposed();//Prints personName
- * 
+ *
+ *
+ *
+ * Concept : Services:
+ * ---------------
+ * Controller is responsible for handeling events raised by dom and Update Dom
+ * till the part that is responsible for calling the server ,here comes the services
  */
 // summary : we want to create something like a class ,that has private and public members 
 //class <= variable hold all members and functions
 // private members: all members within the inline function expression
 //public : define public members within the return (Returned object).
-var GigController = function() {
+
+var GigController = function () {
+    var theButtonthatHasBeenClicked; // to be global across the Module
     var IntiateGigs = function () {
-        $("#btnGoing").click(function (e) {
-            debugger;
-            $.post("/api/Attendece", { GigId: $(e.target).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
+        $("#btnGoing").click(btnGoingClickHandler);
+        var btnGoingClickHandler = function (e) {
+            var theButtonthatHasBeenClicked = $(e.target);
+                 AddAttendence
+                .done(doneMethod)
+                .fail(failMethod);
+        }
+        var failMethod = function() {
+            alert('something went wrong');
+        }
+        var doneMethod = function () {
+            var text = (theButtonthatHasBeenClicked.text == "Going") ? "Going" : "Not Going"
+            theButtonthatHasBeenClicked.toggleClass('btn-default').toggleClass('btn-success').text(text);
+        }
+        var AddAttendence = function() {
+            $.post("/api/Attendece", { GigId: theButtonthatHasBeenClicked.attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
 
-                .done(function () {
-                    $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
-                })
-                .fail(function (parameters) {
-                    $('#btnGoing').text('Failed To Update').addClass('btn-danger');
-                })
-
-        });
-
+        }
     }
     return {
         InitiateGigsExposed: IntiateGigs
 
     }
 }();
-
-
-
+var GigService = function() {}();
 
 function InitiateFollowing() {
     $("#btnFollowing").click(function (e) {
@@ -80,7 +91,8 @@ function InitiateFollowing() {
                 $('#btnFollowing').text('Following').removeClass('btn-default').addClass('btn-success');
             })
             .fail(function (parameters) {
-                $('#btnFollowing').text('Failed To Update').addClass('btn-danger');
+                //$('#btnFollowing').text('Failed To Update').addClass('btn-danger');
+                alert('something went wrong');
             })
 
     });
