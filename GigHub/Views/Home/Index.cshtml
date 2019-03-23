@@ -6,7 +6,7 @@
 
 
 
-<ul class="gigs voffset" style="list-style: none;  ">
+<ul id="MyGigListCanHandelAnyFuthureClickEvent" class="gigs voffset" style="list-style: none;  ">
     @foreach (var gig in Model.UpComingGigs)
     {
         <li style="position: relative;margin-bottom: 30px;">
@@ -43,7 +43,7 @@
 {
     <script>
         $(document).ready(function () {
-            GigController.InitiateGigsExposed();
+            GigController.InitiateGigsExposed("#MyGigListCanHandelAnyFuthureClickEvent");
             InitiateFollowing();
         });
     </script>

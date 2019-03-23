@@ -1,4 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="app/app.js" />
+/// <reference path="app/controllers/attendencecontroller.js" />
+/// <reference path="app/services/attendenceservice.js" />
 /// <reference path="bootbox.min.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="jquery.validate.js" />

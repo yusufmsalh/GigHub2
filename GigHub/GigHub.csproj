@@ -323,6 +323,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\controllers\attendenceController.js" />
+    <Content Include="Scripts\app\services\attendenceService.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
