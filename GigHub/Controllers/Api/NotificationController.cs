@@ -38,9 +38,7 @@ namespace GigHub.Controllers.Api
                 .ToList();
 
             newNotificationList.AddRange(newNotificationList);
-            newNotificationList.AddRange(newNotificationList);
-            newNotificationList.AddRange(newNotificationList);
-            newNotificationList.AddRange(newNotificationList);
+        
             //newNotificationList[0].Gig.Artist.Name;
 
             #endregion

@@ -36,29 +36,33 @@ namespace GigHub.Controllers
                 .ToList();
             return View(myGigs);
         }
-        public ActionResult ViewMyUpCommingGigs(string query = null)
+        public ActionResult ViewMyUpCommingGigs()
         {
-            var userID = User.Identity.GetUserId();
-            var myUpcommmingGigs = dbContext.Gigs.Where(e => e.ArtistId == userID &&
-                                                             e.DateTime > DateTime.MinValue &&
-                                                             e.IsCancelled == false) //fix date later
-                .Include(u => u.Genere);
-            if (!string.IsNullOrWhiteSpace(query))
-            {
-                myUpcommmingGigs = myUpcommmingGigs.Where(
-                    a =>
-                        a.Artist.Name.Contains(query) ||
-                        a.Genere.Name.Contains(query) ||
-                        a.Venue.Contains(query));
+            var currentlyLoggedUserID = User.Identity.GetUserId();
+            #region Fat Query
+            var myUpcommmingGigs = dbContext.Gigs
+                .Where(e => e.ArtistId == currentlyLoggedUserID &&
+                       e.DateTime > DateTime.MinValue &&
+                       e.IsCancelled == false) //fix date later
+                           .Include(u => u.Genere);
 
-
-            }
-
+            var futureAttendecesForCurrentUser =
+                dbContext.Attendences.Where(a => a.AttenderId == currentlyLoggedUserID
+                    //   &&a.Gig.DateTime>DateTime.Now
+                    ).ToList()
+                    .ToLookup(attendence => attendence.GigId);
             //.ToList();
-            GigsViewModel myUpCommingGigsViewModel = new GigsViewModel();
+            GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
+            {
+                UpComingGigs = myUpcommmingGigs.ToList(),
+                MyAttendences =futureAttendecesForCurrentUser
+
+            };
             myUpCommingGigsViewModel.UpComingGigs = myUpcommmingGigs.ToList();
-            myUpCommingGigsViewModel.IsAuthenticated = true;
-            myUpCommingGigsViewModel.SearchTerm = query;
+
+
+            #endregion
+      
             return View(myUpCommingGigsViewModel);
 
         }
@@ -70,12 +74,15 @@ namespace GigHub.Controllers
         public ActionResult GetGigDetails(int Id)
         {
             var currentlyloggedUserId = User.Identity.GetUserId();
-            var gig = dbContext.Gigs.Include(a=>a.Genere).SingleOrDefault(a => a.Id == Id);          
+            var gig = dbContext.Gigs.Include(a => a.Genere).Include(a => a.Artist).SingleOrDefault(a => a.Id == Id);
             var artistId = gig.ArtistId;
 
+            if (gig == null)
+                return HttpNotFound();
+
             //get relation between currently logged user and artist
-            bool isFollowing =
-                dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+            bool isFollowing = dbContext.Following.Any(a => a.FollowerId == currentlyloggedUserId && a.FolloweeId == artistId);
+            bool isAttending = dbContext.Attendences.Any(a => a.GigId == gig.Id && a.AttenderId == currentlyloggedUserId);
 
             if (isFollowing)
             {
@@ -86,7 +93,9 @@ namespace GigHub.Controllers
                 ViewBag.Following = false;
 
             }
-            return View(gig);
+            GigDetailsViewModel gigDetailsViewModel = new GigDetailsViewModel() { Gig = gig, IsFollowing = isFollowing, IsAttending = isAttending };
+
+            return View(gigDetailsViewModel);
         }
         #endregion
         #region Create
@@ -180,16 +189,7 @@ namespace GigHub.Controllers
         }
 
         #endregion
-        #region Search
-        [HttpPost]
-        public ActionResult Search(string SearchTerm)
-        {
-            return RedirectToAction("ViewMyUpCommingGigs", "Gigs", new { query = SearchTerm });
-            //var gigsNames = dbContext.Gigs.Where(a => a.Artist.Name.Contains(SearchTerm)).ToList();
-            //return View(gigsNames);
-        }
 
-        #endregion
 
     }
 }

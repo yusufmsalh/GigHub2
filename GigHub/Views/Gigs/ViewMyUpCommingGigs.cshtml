@@ -13,19 +13,7 @@
 </style>
 
 <h2>My Upcoming Gigs</h2>
-@* Search Gig Part *@
-@using (@Html.BeginForm("Search", "Gigs", "Post"))
-{
-    <div class="form-group">
-        <div class="input-group" style="width: 300px">
-            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control no-border", @placeholder = "Search by Artist" })
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-search"></i>
-            </span>
-        </div>
-    </div>
-}
-@* End Of Search Gig Part *@
+
 <ul class="gigs voffset4">
     @foreach (var gig in Model.UpComingGigs)
             {

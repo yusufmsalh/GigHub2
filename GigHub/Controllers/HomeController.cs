@@ -6,8 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GigHub.ViewModels;
+using Microsoft.AspNet.Identity;
 
-namespace GigHub.Controllers 
+namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
@@ -17,19 +18,40 @@ namespace GigHub.Controllers
         {
             dbContext = new ApplicationDbContext();
         }
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
+            var currentlyLoggedUserId = User.Identity.GetUserId();
             var isAuthenticated = User.Identity.IsAuthenticated;//only show buttons to Authenticated users
-            var upComingGigs = dbContext.Gigs
-                .Include(g => g.Artist)
-                .Include(e=>e.Genere)
-                .Where(g => g.DateTime >= DateTime.Now && g.IsCancelled == true);//get only future gigs
-            var gigsViewModel = new GigsViewModel()
+            var upComingGigs = dbContext.Gigs.Include(g => g.Artist).Include(e => e.Genere)
+                .Where(g => g.DateTime >= DateTime.MinValue && g.IsCancelled == false);        //get only future gigs
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                upComingGigs = upComingGigs
+                        .Where(a => a.Artist.Name.Contains(query) ||
+                        a.Genere.Name.Contains(query) ||
+                        a.Venue.Contains(query));
+            }
+
+                    var futureAttendecesForCurrentUser =
+                    dbContext.Attendences.Where(a => a.AttenderId == currentlyLoggedUserId 
+                    //   &&a.Gig.DateTime>DateTime.Now
+                    ).ToList()
+                    .ToLookup(attendence =>attendence.GigId) ;
+                    //creats a look up table 
+                    //to quickly look up an attendence by a gig id.
+
+            GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
             {
                 UpComingGigs = upComingGigs,
-                IsAuthenticated = isAuthenticated
+                IsAuthenticated = User.Identity.IsAuthenticated,
+                SearchTerm = query,
+                MyAttendences =  futureAttendecesForCurrentUser
             };
-            return View(gigsViewModel);
+            //load future attendences for the currently logged user
+
+
+            return View(myUpCommingGigsViewModel);
+     
         }
 
         public ActionResult About()
@@ -45,5 +67,15 @@ namespace GigHub.Controllers
 
             return View();
         }
+     
+        [HttpPost]
+        public ActionResult Search(string SearchTerm)
+        {
+            return RedirectToAction("Index", "Home", new { query = SearchTerm });
+
+        }
+
+        
+
     }
 }
