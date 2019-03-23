@@ -53,15 +53,24 @@
 // private members: all members within the inline function expression
 //public : define public members within the return (Returned object).
 
-var GigController = function () {
+var GigService = function () {
+    //handel calling the server here.
+    var AddAttendence = function (gigId, doneMethod, failMethod) {
+        $.post("/api/Attendece", { GigId: gigId, passedParam2: 1, passedParam3: "Hello Text" })
+            .done(doneMethod)//passed from controller
+            .fail(failMethod);//passed from controller
+    }
+    return { AddAttendenceExposed: AddAttendence };
+}();
+var GigController = function (gigService) {
     var theButtonthatHasBeenClicked; // to be global across the Module
     var IntiateGigs = function () {
         $("#btnGoing").click(btnGoingClickHandler);
         var btnGoingClickHandler = function (e) {
             var theButtonthatHasBeenClicked = $(e.target);
-                 AddAttendence
-                .done(doneMethod)
-                .fail(failMethod);
+            var gigIDDDDD = theButtonthatHasBeenClicked.attr("gigId");
+            gigService.AddAttendenceExposed(gigIDDDDD, doneMethod, failMethod)
+              
         }
         var failMethod = function() {
             alert('something went wrong');
@@ -70,17 +79,14 @@ var GigController = function () {
             var text = (theButtonthatHasBeenClicked.text == "Going") ? "Going" : "Not Going"
             theButtonthatHasBeenClicked.toggleClass('btn-default').toggleClass('btn-success').text(text);
         }
-        var AddAttendence = function() {
-            $.post("/api/Attendece", { GigId: theButtonthatHasBeenClicked.attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
-
-        }
+      
     }
     return {
         InitiateGigsExposed: IntiateGigs
 
     }
-}();
-var GigService = function() {}();
+}(GigService);
+
 
 function InitiateFollowing() {
     $("#btnFollowing").click(function (e) {
