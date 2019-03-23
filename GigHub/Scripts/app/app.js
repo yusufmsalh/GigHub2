@@ -48,31 +48,28 @@
 //public : define public members within the return (Returned object).
 var GigController = function() {
     var IntiateGigs = function () {
+        $("#btnGoing").click(function (e) {
+            debugger;
+            $.post("/api/Attendece", { GigId: $(e.target).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
+
+                .done(function () {
+                    $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
+                })
+                .fail(function (parameters) {
+                    $('#btnGoing').text('Failed To Update').addClass('btn-danger');
+                })
+
+        });
+
+    }
+    return {
+        InitiateGigsExposed: IntiateGigs
 
     }
 }();
 
 
 
-function InitiateGig() {
-    /*
-     1-Extract function from MarkUp.
-     2- Add script to  a new bundel.
-     3-add bundel in 
-     */
-    $("#btnGoing").click(function (e) {
-        debugger;
-        $.post("/api/Attendece", { GigId: $(e.target).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
-
-            .done(function () {
-                $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
-            })
-            .fail(function (parameters) {
-                $('#btnGoing').text('Failed To Update').addClass('btn-danger');
-            })
-
-    });
-}
 
 function InitiateFollowing() {
     $("#btnFollowing").click(function (e) {
