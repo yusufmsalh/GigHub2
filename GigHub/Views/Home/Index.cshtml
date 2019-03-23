@@ -2,13 +2,13 @@
 @{
     ViewBag.Title = "Home Page";
 }
- 
+
 
 
 
 <ul class="gigs voffset" style="list-style: none;  ">
     @foreach (var gig in Model.UpComingGigs)
-        {
+    {
         <li style="position: relative;margin-bottom: 30px;">
             <div class="date">
                 <div class="month">
@@ -27,10 +27,10 @@
                     @gig.Genere.Name
                 </span>
                 @if (Model.IsAuthenticated)
-        {
-                <button gigId="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right" style="margin-left: 16px;">Going ?</button>
+                {
+                    <button gigId="@gig.Id" id="btnGoing" class="btn btn-default btn-sm pull-right" style="margin-left: 16px;">Going ?</button>
 
-                <button FolloweeId="@gig.ArtistId" id="btnFollowing" class="btn btn-link btn-sm pull-right" style="margin-left: 16px;">Following ?</button>
+                    <button FolloweeId="@gig.ArtistId" id="btnFollowing" class="btn btn-link btn-sm pull-right" style="margin-left: 16px;">Following ?</button>
                 }
 
             </div>
@@ -43,31 +43,9 @@
 {
     <script>
         $(document).ready(function () {
-            $("#btnGoing").click(function (e) {
-            debugger;
-                $.post("/api/Attendece", { GigId: $(e.target).attr("gigId"), passedParam2: 1, passedParam3: "Hello Text" })
-
-                .done(function () {
-                    $('#btnGoing').text('Going').removeClass('btn-default').addClass('btn-success');
-            })
-                .fail(function (parameters) {
-                    $('#btnGoing').text('Failed To Update').addClass('btn-danger');
-            })
-
-            });
-            $("#btnFollowing").click(function (e) {
-            debugger;
-                $.post("/api/Following", { FolloweeId: $(e.target).attr("FolloweeId") })
-
-                    .done(function () {
-                        $('#btnFollowing').text('Following').removeClass('btn-default').addClass('btn-success');
-            })
-                    .fail(function (parameters) {
-                        $('#btnFollowing').text('Failed To Update').addClass('btn-danger');
-            })
-
-            });
-    });
+            InitiateGig();
+            InitiateFollowing();
+        });
     </script>
 
 }
