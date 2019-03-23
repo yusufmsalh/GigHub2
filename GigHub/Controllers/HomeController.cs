@@ -38,7 +38,7 @@ namespace GigHub.Controllers
                     ).ToList()
                     .ToLookup(attendence =>attendence.GigId) ;
                     //creats a look up table 
-                    //to quickly look up an attendence by a gid id.
+                    //to quickly look up an attendence by a gig id.
 
             GigsViewModel myUpCommingGigsViewModel = new GigsViewModel()
             {
