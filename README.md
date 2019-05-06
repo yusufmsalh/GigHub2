@@ -67,7 +67,8 @@ Part 2 :
   a-Higher level Modules shouldn't depend on lower level Modules ,both should depend on Abstraction : performed by making both Controller Class and Unitwork depend on IUnitOfWork.
   b-Abstraction must not depend on Details ,but Details Must depend on Abstraction : performed by removing reference of repository calss from UnitOfWork  and replacing them with Interfaces.
   41- Using Ninject  : that is a Dependecy Injection framework,I use to initialize the dependecy ( IUnitOfWork) passed to Controller 's Constructor rather than just passing a concert implementation of a class.
-  
+  42-using ninject.extensions.conventions for convention based Binding in Ninject rather than manually typing the Interface
+ and it's class.  
   
 
 
