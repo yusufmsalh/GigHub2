@@ -63,6 +63,11 @@ Part 2 :
  *38 - using undescore.js : among it's useful features ,here I have learbed how to use undescore.js as a templating engin which means how to format a template for popover ,that get rendered on the client(ie : fill the template with the notifications retured from the api).
  
  * 39- * Decoupling * the Application from presistant framework (Entity FrameWork) and Using *Repository (in memory collection)*,and commiting the transactions using *UnitofWork*.
- 
+ * 40- Appling the *Depedency Inversion Principle *:
+  a-Higher level Modules shouldn't depend on lower level Modules ,both should depend on Abstraction : performed by making both Controller Class and Unitwork depend on IUnitOfWork.
+  b-Abstraction must not depend on Details ,but Details Must depend on Abstraction : performed by removing reference of repository calss from UnitOfWork  and replacing them with Interfaces.
+  41- Using Ninject  : that is a Dependecy Injection framework,I use to initialize the dependecy ( IUnitOfWork) passed to Controller 's Constructor rather than just passing a concert implementation of a class.
+  
+  
 
 
