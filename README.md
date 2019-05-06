@@ -66,9 +66,17 @@ Part 2 :
  * 40- Appling the *Depedency Inversion Principle *:
   a-Higher level Modules shouldn't depend on lower level Modules ,both should depend on Abstraction : performed by making both Controller Class and Unitwork depend on IUnitOfWork.
   b-Abstraction must not depend on Details ,but Details Must depend on Abstraction : performed by removing reference of repository calss from UnitOfWork  and replacing them with Interfaces.
-  41- Using Ninject  : that is a Dependecy Injection framework,I use to initialize the dependecy ( IUnitOfWork) passed to Controller 's Constructor rather than just passing a concert implementation of a class.
-  42-using ninject.extensions.conventions for convention based Binding in Ninject rather than manually typing the Interface
+ * 41- Using Ninject  : that is a Dependecy Injection framework,I use to initialize the dependecy ( IUnitOfWork) passed to Controller 's Constructor rather than just passing a concert implementation of a class.
+ * 42-using ninject.extensions.conventions for convention based Binding in Ninject rather than manually typing the Interface
  and it's class.  
-  
+  * 43-Why To Use or Not To Use Repository with Entity Framework : http://tiny.cc/wx885y http://tiny.cc/40885y 
+  * 44- What I have learned about EF and Repository,Unit of Work :
+   Ef is an ORM created Like the Nature of Repo and UoW ,Dbset -> repo ->in memory collection , DbContext ->UoW ->commit changes.
+   Some may claim it's a useless code to add ,
+   yet use those pattherns to 2 reasons
+   1-Nice Abstraction Layer of Your Data Access Layer
+   1- EF returns IQueryable ,your queries will be fat,if a new developer wants to add more logic ,it will be fatter.
+   2-Certralize place for queries per Entity Type.
+   3-Unit Testing : which good reason enough .
 
 
