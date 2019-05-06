@@ -60,9 +60,9 @@ Part 2 :
  * 35  - Customizing Popover to get it's content from Api (note for fellow developers : use popover-title and popover-content classes in pop over template not popover-header and popover-body to make the code work with you.
  * 36- Using moment.js : your best friend to parse ,manipulate and display dates in JavaScript.
  * 37- Using Less : A dynamic Style Sheet Language ,that gets compiled to css at run time (simply write  less css- a more elegant way).
- *40 - using undescore.js : among it's useful features ,here I have learbed how to use undescore.js as a templating engin which means how to format a template for popover ,that get rendered on the client(ie : fill the template with the notifications retured from the api).
+ *38 - using undescore.js : among it's useful features ,here I have learbed how to use undescore.js as a templating engin which means how to format a template for popover ,that get rendered on the client(ie : fill the template with the notifications retured from the api).
  
- 
+ * 39- * Decoupling * the Application from presistant framework (Entity FrameWork) and Using *Repository (in memory collection)*,and commiting the transactions using *UnitofWork*.
  
 
 
